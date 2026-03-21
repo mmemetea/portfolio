@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { client } from "@/sanity/lib/client";
-import { allProjectsQuery } from "@/lib/queries";
 import Container from "@/components/Container";
 import ProjectFilterGrid from "@/components/ProjectFilterGrid";
 import type { Project } from "@/components/ProjectFilterGrid";
@@ -10,7 +8,7 @@ export const metadata: Metadata = {
   description: "Verified work with proof of impact",
 };
 
-const fallbackProjects: Project[] = [
+const projects: Project[] = [
   {
     _id: "fallback-nesto",
     title: "NESTO.IO",
@@ -100,18 +98,7 @@ const fallbackProjects: Project[] = [
   },
 ];
 
-export default async function ProjectsPage() {
-  let projects: Project[] = fallbackProjects;
-
-  try {
-    const data = await client.fetch(allProjectsQuery);
-    if (Array.isArray(data) && data.length > 0) {
-      projects = data;
-    }
-  } catch {
-    // Use fallback data when Sanity is unavailable
-  }
-
+export default function ProjectsPage() {
   return (
     <section className="py-16 sm:py-24">
       <Container>

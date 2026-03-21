@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from "react";
 import { ExternalLink } from "lucide-react";
-import { urlFor } from "@/sanity/lib/image";
 
 export interface ProofLink {
   label: string;
@@ -91,19 +90,6 @@ export default function ProjectFilterGrid({
               key={project._id}
               className="group overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.02] transition-all duration-200 hover:scale-[1.02] hover:shadow-lg hover:shadow-foreground/5"
             >
-              {/* Image */}
-              {project.image && (
-                <div className="aspect-video w-full bg-foreground/5">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={urlFor(project.image).width(600).height(340).url()}
-                    alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-              )}
-
               <div className="p-6">
                 {/* Title */}
                 <h3 className="text-xl font-bold text-foreground">

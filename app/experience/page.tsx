@@ -1,10 +1,8 @@
 import { Calendar, Briefcase } from "lucide-react";
-import { getClient } from "@/sanity/lib/client";
-import { experiencesQuery } from "@/lib/queries";
 import Container from "@/components/Container";
 
 /* ------------------------------------------------------------------ */
-/*  Types (mirrors Sanity schema)                                     */
+/*  Types                                                              */
 /* ------------------------------------------------------------------ */
 
 interface Experience {
@@ -37,10 +35,10 @@ function formatDateRange(
 }
 
 /* ------------------------------------------------------------------ */
-/*  Fallback data (CV content, newest first)                         */
+/*  Local data (CV content, newest first)                            */
 /* ------------------------------------------------------------------ */
 
-const fallbackExperiences: Experience[] = [
+const experiences: Experience[] = [
   {
     _id: "exp-1",
     role: "Senior Consultant",
@@ -151,28 +149,7 @@ const fallbackExperiences: Experience[] = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Data fetching with graceful fallback                              */
-/* ------------------------------------------------------------------ */
-
-async function getExperiences(): Promise<Experience[]> {
-  try {
-    const experiences = await getClient().fetch<Experience[]>(experiencesQuery);
-    return experiences && experiences.length > 0
-      ? experiences
-      : fallbackExperiences;
-  } catch {
-    return fallbackExperiences;
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/*  Page Component                                                    */
-/* ------------------------------------------------------------------ */
-
-export default async function ExperiencePage() {
-  const experiences = await getExperiences();
-
+export default function ExperiencePage() {
   return (
     <section className="py-20">
       <Container>

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { ExternalLink } from "lucide-react";
-import { client } from "@/sanity/lib/client";
-import { allArticlesQuery } from "@/lib/queries";
 import Container from "@/components/Container";
 
 export const metadata: Metadata = {
@@ -19,7 +17,7 @@ interface Article {
   tags?: string[] | null;
 }
 
-const fallbackArticles: Article[] = [
+const articles: Article[] = [
   {
     _id: "fallback-kanban",
     title: "Kanban, the alternative path to agility",
@@ -51,18 +49,7 @@ function formatDate(dateStr: string): string {
   });
 }
 
-export default async function ArticlesPage() {
-  let articles: Article[] = fallbackArticles;
-
-  try {
-    const data = await client.fetch(allArticlesQuery);
-    if (Array.isArray(data) && data.length > 0) {
-      articles = data;
-    }
-  } catch {
-    // Use fallback data when Sanity is unavailable
-  }
-
+export default function ArticlesPage() {
   return (
     <section className="py-16 sm:py-24">
       <Container>

@@ -11,35 +11,30 @@ import {
   Cpu,
 } from "lucide-react";
 import Container from "@/components/Container";
-import { client } from "@/sanity/lib/client";
-import { personQuery, allAwardsQuery } from "@/lib/queries";
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
-interface SanityPerson {
-  name?: string;
-  image?: { asset?: { url?: string }; alt?: string };
-  bio?: string;
-  location?: string;
-  email?: string;
-  socialLinks?: { platform?: string; url?: string }[];
+interface Person {
+  name: string;
+  bio: string;
+  location: string;
+  email: string;
 }
 
-interface SanityAward {
-  title?: string;
-  event?: string;
-  date?: string;
-  description?: string;
-  image?: { asset?: { url?: string }; alt?: string };
+interface Award {
+  title: string;
+  event: string;
+  date: string;
+  description: string;
 }
 
 // ---------------------------------------------------------------------------
 // Hardcoded fallback data
 // ---------------------------------------------------------------------------
 
-const FALLBACK_PERSON: SanityPerson = {
+const person: Person = {
   name: "Michaël Memeteau",
   bio: [
     "Seasoned professional bridging software engineering and business strategy with a unique background in mechanical engineering and decades of hands-on technology leadership.",
@@ -50,7 +45,7 @@ const FALLBACK_PERSON: SanityPerson = {
   email: "mmemetea@gmail.com",
 };
 
-const FALLBACK_AWARDS: SanityAward[] = [
+const awards: Award[] = [
   {
     title: "1st Prize",
     event: "Productized Lisbon Hardware Accelerator (KIC)",
@@ -141,30 +136,6 @@ const OTHER_INTERESTS = [
 ] as const;
 
 // ---------------------------------------------------------------------------
-// Data fetching
-// ---------------------------------------------------------------------------
-
-async function getPerson(): Promise<SanityPerson> {
-  try {
-    const person = await client.fetch<SanityPerson>(personQuery);
-    if (person?.name) return person;
-  } catch {
-    // Sanity unavailable — use fallback
-  }
-  return FALLBACK_PERSON;
-}
-
-async function getAwards(): Promise<SanityAward[]> {
-  try {
-    const awards = await client.fetch<SanityAward[]>(allAwardsQuery);
-    if (awards?.length) return awards;
-  } catch {
-    // Sanity unavailable — use fallback
-  }
-  return FALLBACK_AWARDS;
-}
-
-// ---------------------------------------------------------------------------
 // Metadata
 // ---------------------------------------------------------------------------
 
@@ -178,10 +149,8 @@ export const metadata: Metadata = {
 // Page
 // ---------------------------------------------------------------------------
 
-export default async function AboutPage() {
-  const [person, awards] = await Promise.all([getPerson(), getAwards()]);
-
-  const bioParagraphs = (person.bio ?? FALLBACK_PERSON.bio ?? "").split("\n\n");
+export default function AboutPage() {
+  const bioParagraphs = person.bio.split("\n\n");
 
   return (
     <section className="flex flex-1 flex-col">
@@ -209,7 +178,7 @@ export default async function AboutPage() {
 
             <div className="flex flex-col gap-4">
               <h2 className="text-2xl font-semibold text-foreground">
-                {person.name ?? FALLBACK_PERSON.name}
+                {person.name}
               </h2>
 
               {bioParagraphs.map((p, i) => (
@@ -221,15 +190,15 @@ export default async function AboutPage() {
               <ul className="mt-2 flex flex-col gap-2 text-sm text-foreground/60">
                 <li className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-accent" />
-                  {person.location ?? FALLBACK_PERSON.location}
+                  {person.location}
                 </li>
                 <li className="flex items-center gap-2">
                   <Globe className="h-4 w-4 text-accent" />
                   <a
-                    href={`mailto:${person.email ?? FALLBACK_PERSON.email}`}
+                    href={`mailto:${person.email}`}
                     className="transition-colors hover:text-accent"
                   >
-                    {person.email ?? FALLBACK_PERSON.email}
+                    {person.email}
                   </a>
                 </li>
               </ul>

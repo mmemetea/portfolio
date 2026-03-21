@@ -1,18 +1,10 @@
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import { getClient } from "@/sanity/lib/client";
-import { personQuery, featuredProjectsQuery } from "@/lib/queries";
 import Container from "@/components/Container";
 
 /* ------------------------------------------------------------------ */
-/*  Types (mirrors Sanity schemas)                                    */
+/*  Types                                                              */
 /* ------------------------------------------------------------------ */
-
-interface Person {
-  name?: string;
-  tagline?: string;
-  bio?: string;
-}
 
 interface ProofLink {
   label: string;
@@ -29,16 +21,16 @@ interface Project {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Fallback data (used when Sanity is not seeded)                    */
+/*  Local data                                                        */
 /* ------------------------------------------------------------------ */
 
-const fallbackPerson: Person = {
+const person = {
   name: "Michaël Memeteau",
   tagline: "Lateral Thinker. Product & Innovative Executive.",
   bio: "Seasoned professional bridging software engineering and business strategy. From founding a SaaS startup acquired by Amadeus to shaping EU digital transformation policies, I turn complex challenges into elegant solutions.",
 };
 
-const fallbackProjects: Project[] = [
+const projects: Project[] = [
   {
     _id: "proj-1",
     title: "ComUT SaaS Platform",
@@ -75,38 +67,7 @@ const stats = [
   { value: "EU", label: "Commission study", detail: "Track & Trace" },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Data fetching with graceful fallback                              */
-/* ------------------------------------------------------------------ */
-
-async function getPerson(): Promise<Person> {
-  try {
-    const person = await getClient().fetch<Person>(personQuery);
-    return person ?? fallbackPerson;
-  } catch {
-    return fallbackPerson;
-  }
-}
-
-async function getFeaturedProjects(): Promise<Project[]> {
-  try {
-    const projects = await getClient().fetch<Project[]>(featuredProjectsQuery);
-    return projects && projects.length > 0 ? projects : fallbackProjects;
-  } catch {
-    return fallbackProjects;
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/*  Page Component                                                    */
-/* ------------------------------------------------------------------ */
-
-export default async function Home() {
-  const [person, projects] = await Promise.all([
-    getPerson(),
-    getFeaturedProjects(),
-  ]);
-
+export default function Home() {
   return (
     <>
       {/* ── Hero Section ────────────────────────────────────────── */}
@@ -130,13 +91,13 @@ export default async function Home() {
               Portfolio
             </p>
             <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              {person.name ?? "Michaël Memeteau"}
+              {person.name}
             </h1>
             <p className="mt-3 text-xl font-medium text-foreground/80 sm:text-2xl">
-              {person.tagline ?? ""}
+              {person.tagline}
             </p>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground/60">
-              {person.bio ?? ""}
+              {person.bio}
             </p>
 
             <div className="mt-10">
