@@ -23,5 +23,13 @@
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "packageManager": "nub@0.2.10",
+  "devEngines": {
+    "packageManager": {
+      "name": "nub",
+      "version": "^0.2.10",
+      "onFail": "warn"
+    }
   }
 }
