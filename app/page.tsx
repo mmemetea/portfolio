@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import Container from "@/components/Container";
 import CareerTimeline from "@/components/CareerTimeline";
+import FeaturedProjectCards from "@/components/FeaturedProjectCards";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -182,6 +183,40 @@ export default function Home() {
             public record. Where there is no receipt, the claim says so. Where
             the work is in progress, it says that too.
           </p>
+        </Container>
+      </section>
+
+      {/* ── Featured work ───────────────────────────────────────── */}
+      <section className="border-t border-foreground/10 py-20">
+        <Container>
+          <div className="mb-12 flex items-end justify-between">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                The work, up front.
+              </h2>
+              <p className="mt-2 max-w-2xl text-foreground/60">
+                What the pattern looks like when it lands — each card with
+                its receipt.
+              </p>
+            </div>
+            <Link
+              href="/projects"
+              className="hidden items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80 sm:inline-flex"
+            >
+              All projects
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <FeaturedProjectCards />
+
+          <Link
+            href="/projects"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80 sm:hidden"
+          >
+            All projects
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </Container>
       </section>
 

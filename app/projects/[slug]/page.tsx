@@ -4,21 +4,26 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Container from "@/components/Container";
 import ImageCarousel from "@/components/ImageCarousel";
-import { projects, getProjectBySlug } from "@/lib/projects";
+import { getAllProjects, getProjectBySlug } from "@/lib/content";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  // /projects/nesto has a bespoke page that shadows this dynamic route —
+  // don't emit a duplicate param for it.
+  const projects = await getAllProjects();
+  return projects
+    .filter((p) => p.slug !== "nesto")
+    .map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   if (!project) return {};
   return {
     title: `${project.title} | Michaël Memeteau`,
@@ -28,7 +33,7 @@ export async function generateMetadata({
 
 export default async function ProjectDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
 
   if (!project) notFound();
 

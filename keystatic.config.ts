@@ -53,6 +53,10 @@ export default config({
           }
         ),
         featured: fields.checkbox({ label: "Featured", defaultValue: false }),
+        bench: fields.checkbox({
+          label: "Bench (maker build — shown separately)",
+          defaultValue: false,
+        }),
         order: fields.integer({ label: "Display order" }),
       },
     }),

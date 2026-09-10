@@ -1,0 +1,19 @@
+title: "Paper fleet logs → €3M ARR, acquired"
+subtitle: "Com-UT — fleet SaaS, co-founder & CTO"
+description: "Fleet management in 2004 ran on phone calls and paper logs. We built the SaaS that replaced them — GPRS tracking, CANbus diagnostics, driver behavior analytics, predictive maintenance on a MongoDB pipeline — scaled it to 28 people and €3M ARR, and sold it to a French industrial group."
+fullDescription: "Com-UT was a SaaS platform for fleet management that I co-founded and led as CTO.\n\n**Product:**\n- Real-time vehicle tracking via GPRS connectivity\n- CANbus integration for deep vehicle diagnostics\n- Driver behavior analytics (speeding, harsh braking, fuel consumption)\n- Predictive maintenance scheduling based on vehicle telemetry\n- MongoDB-backed data pipeline handling thousands of events per second\n\n**Growth:**\n- Scaled from founding team to 28 employees\n- Reached €3M Annual Recurring Revenue\n- Client base across logistics, construction, and public transport sectors\n\n**Outcome:**\n- Acquired by a French industrial group\n- Technology and team integrated into the acquirer's digital transformation division"
+tags:
+  - "SaaS"
+  - "GPRS"
+  - "CANbus"
+  - "MongoDB"
+proofLinks:
+  - label: "Acquired by a French industrial group — reference on request"
+    url: ""
+images:
+  - src: "/projects/comut/comut-01.jpg"
+    alt: "Com-UT - product backlog"
+videos: []
+featured: false
+bench: false
+order: 9

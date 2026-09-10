@@ -1,13 +1,11 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
-import { getFeaturedProjects } from "@/lib/projects";
+import { getFeaturedProjects } from "@/lib/content";
 import type { Project } from "@/lib/projects";
 
-export default function FeaturedProjectCards() {
-  const featuredProjects: Project[] = getFeaturedProjects();
+export default async function FeaturedProjectCards() {
+  const featuredProjects: Project[] = await getFeaturedProjects();
 
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

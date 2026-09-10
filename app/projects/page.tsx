@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Container from "@/components/Container";
 import ProjectFilterGrid from "@/components/ProjectFilterGrid";
-import { projects } from "@/lib/projects";
+import { getAllProjects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "The Work | Michaël Memeteau",
   description: "Transformations, not job titles — every claim with its receipt",
 };
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const projects = await getAllProjects();
   const work = projects.filter((p) => !p.bench);
   const bench = projects.filter((p) => p.bench);
 

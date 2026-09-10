@@ -4,21 +4,12 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Container from "@/components/Container";
 import ImageCarousel from "@/components/ImageCarousel";
-import { projects, getProjectBySlug } from "@/lib/projects";
+import { getProjectBySlug } from "@/lib/content";
 
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export async function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+// Bespoke case study: this static route shadows /projects/[slug] for NESTO.
+// The slug is fixed by the route itself — it is never passed in params.
+export async function generateMetadata(): Promise<Metadata> {
+  const project = await getProjectBySlug("nesto");
   if (!project) return {};
   return {
     title: `${project.title} | Michaël Memeteau`,
@@ -26,9 +17,8 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProjectDetailPage({ params }: PageProps) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+export default async function NestoPage() {
+  const project = await getProjectBySlug("nesto");
 
   if (!project) notFound();
 

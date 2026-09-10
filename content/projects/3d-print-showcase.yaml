@@ -1,0 +1,29 @@
+title: "3D Printing Showcase"
+subtitle: "Personal maker projects, 2015–2019"
+description: "A selection of 3D-printed designs, enclosures and experiments from my home workshop — functional parts, iterative prototypes and finished builds refined over four years of printing."
+fullDescription: ""
+tags:
+  - "3D Printing"
+  - "Maker"
+  - "Fusion 360"
+  - "Design"
+proofLinks: []
+images:
+  - src: "/projects/3d-print-showcase/3d-print-showcase-01.jpg"
+    alt: "3D printing showcase - printed part"
+  - src: "/projects/3d-print-showcase/3d-print-showcase-02.jpg"
+    alt: "3D printing showcase - printed part"
+  - src: "/projects/3d-print-showcase/3d-print-showcase-03.jpg"
+    alt: "3D printing showcase - printed part"
+  - src: "/projects/3d-print-showcase/3d-print-showcase-04.jpg"
+    alt: "3D printing showcase - printed part"
+  - src: "/projects/3d-print-showcase/3d-print-showcase-05.jpg"
+    alt: "3D printing showcase - printed part"
+  - src: "/projects/3d-print-showcase/3d-print-showcase-06.jpg"
+    alt: "3D printing showcase - printed part"
+videos:
+  - src: "/projects/3d-print-showcase/clip.mp4"
+    poster: "/projects/3d-print-showcase/poster.jpg"
+featured: false
+bench: true
+order: 10

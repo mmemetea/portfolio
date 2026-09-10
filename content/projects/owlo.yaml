@@ -1,0 +1,33 @@
+title: "An alarm you cannot see"
+subtitle: "OWLO — SIGFOX bicycle security"
+description: "An invisible SIGFOX-connected bicycle alarm inside the seat post — long range, 1+ year battery, BLE mobile app. Finalist at Shark Tank Portugal and the ENGIE Singapore OpenInnov Challenge. Finalist, not a shipped product — listed because the build is real."
+fullDescription: "OWLO was a smart, invisible bicycle alarm system designed to combat bike theft through IoT technology.\n\n**Product Features:**\n- Completely invisible when installed inside the seat post\n- SIGFOX connectivity for long-range alerts (up to several kilometers)\n- BLE (Bluetooth Low Energy) for smartphone pairing and configuration\n- 1+ year battery life on a single charge\n- Mobile app for real-time alerts, geolocation, and status monitoring\n- Tamper detection with instant notification\n\n**Recognition:**\n- Finalist at Shark Tank Portugal\n- Finalist at ENGIE Singapore OpenInnov Challenge\n- Showcased at Productized.co hardware workshop\n\n**Technology Stack:**\n- Custom PCB design with SIGFOX module\n- Firmware in C (ARM Cortex-M)\n- iOS/Android companion app via BLE\n- Cloud backend for fleet management and alert routing"
+tags:
+  - "IoT"
+  - "SIGFOX"
+  - "Hardware"
+  - "Startup"
+proofLinks:
+  - label: "Pitch deck (ENGIE Singapore)"
+    url: "/owlo-presentation-engie-singapore.pptx"
+images:
+  - src: "/projects/owlo/owlo-01.jpg"
+    alt: "OWLO alarm - keyring rendering"
+  - src: "/projects/owlo/owlo-02.jpg"
+    alt: "OWLO alarm - casing rendering"
+  - src: "/projects/owlo/owlo-03.jpg"
+    alt: "OWLO alarm - product photo"
+  - src: "/projects/owlo/owlo-04.jpg"
+    alt: "OWLO - companion app screens"
+  - src: "/projects/owlo/owlo-05.jpg"
+    alt: "OWLO - four-screen app flow"
+  - src: "/projects/owlo/owlo-06.jpg"
+    alt: "OWLO - watching-mode screen"
+  - src: "/projects/owlo/owlo-07.jpg"
+    alt: "OWLO alarm - photo"
+  - src: "/projects/owlo/owlo-08.jpg"
+    alt: "OWLO alarm - photo"
+videos: []
+featured: false
+bench: false
+order: 7

@@ -15,13 +15,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dedicated NESTO case study at `/projects/nesto`, backed by the original pitch
   decks and documents (Brinc, Web Summit, EDP, InnoEnergy, Oz Energia, PV3).
 - Keystatic CMS mounted at `/keystatic` (local storage) with a `projects`
-  collection schema, YAML reader helpers in `lib/content.ts`, and a one-shot
-  `scripts/migrate-projects.ts` to move the hardcoded array in `lib/projects.ts`
-  into `content/projects/*.yaml` (script run pending; pages still read the array).
+  collection schema (including the `bench` flag). The 13 projects now live in
+  `content/projects/*.yaml`; every project page reads them at build time
+  through the async reader in `lib/content.ts`. `lib/projects.ts` keeps only
+  the shared types.
 - `CareerTimeline` component: horizontally scrollable career history with arrow
   controls, rendered on the home page.
 - `ImageCarousel` component used by the project detail pages.
-- `FeaturedProjectCards` component (built, not yet mounted on a page).
+- `FeaturedProjectCards` async server component, mounted in a "The work, up
+  front." section on the home page.
 - Project media library under `public/projects/` (photos, GIFs, videos with
   posters), profile photo, and placeholder SVG.
 - "Off the clock, on the bench" section on the Projects page for maker builds,
@@ -44,6 +46,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgraded `next` to `^16.2.10`; added `@keystatic/core`, `@keystatic/next`, and
   `@playwright/test`.
 
+### Fixed
+
+- `/projects/nesto` always 404'd: the bespoke static page destructured a
+  `params.slug` that never exists on a static route. The slug is now fixed in
+  the page, and `/projects/[slug]` no longer emits a duplicate param for it.
+
 ### Removed
 
-- `AGENTS.md` and `CLAUDE.md` agent context files.
+- `AGENTS.md` and `CLAUDE.md` agent context files, and the one-shot
+  `scripts/migrate-projects.ts` after it was run.
+

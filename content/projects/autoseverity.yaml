@@ -1,0 +1,19 @@
+title: "The ICU, scored in real time"
+subtitle: "AutoSeverity — clinical decision support, Luz Saúde"
+description: "Clinical decision-support for Luz Saúde: patient severity scored from electronic health records, HL7/FHIR interoperability with LOINC-coded labs, real-time indicators dashboard for clinicians."
+fullDescription: "AutoSeverity is a clinical decision-support system built for Luz Saúde, scoring patient severity from electronic health record data and surfacing it through a real-time indicators dashboard.\n\n**Key work:**\n- Discovery and indicator mapping with clinical stakeholders\n- Healthcare interoperability via HL7 and FHIR, with LOINC-coded labs\n- Architecture proposal and Figma-designed clinician UI"
+tags:
+  - "Healthcare"
+  - "HL7/FHIR"
+  - "Analytics"
+  - "Decision Support"
+proofLinks: []
+images:
+  - src: "/projects/autoseverity/graph-indicadores.gif"
+    alt: "AutoSeverity - indicators dashboard"
+  - src: "/projects/autoseverity/autoseverity-figma-page1.jpg"
+    alt: "AutoSeverity - Figma UI design"
+videos: []
+featured: false
+bench: false
+order: 14

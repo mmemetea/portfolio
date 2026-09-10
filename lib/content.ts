@@ -24,6 +24,7 @@ function toProject(slug: string, e: ProjectEntry): Project {
       ...(v.poster ? { poster: v.poster } : {}),
     })),
     featured: e.featured ?? false,
+    bench: e.bench ?? false,
     order: e.order ?? 0,
   };
 }

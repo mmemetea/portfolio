@@ -1,0 +1,22 @@
+title: "The gas bottle → a sensor network"
+subtitle: "NESTO — IoT platform, founder"
+description: "Bottled-gas logistics ran on drivers eyeballing racks. Built the whole stack: an NB-IoT scale for weight and temperature, a vibro-acoustic rack sensor for removal and replenishment (patent filed), Prophet demand forecasting, route optimization. Twenty prototypes in the field. Hackaday wrote up the polyurethane-printed enclosure."
+fullDescription: "NESTO was an end-to-end IoT platform for bottled gas distribution, combining hardware design, connectivity, cloud infrastructure, and machine learning.\n\n**Hardware Products:**\n- NB-IoT connected scale measuring weight and temperature of gas bottles in real-time\n- Vibro-acoustic rack sensor detecting bottle removal and replenishment events\n- Originally designed on SIGFOX, later migrated to NB-IoT for better coverage and bidirectional communication\n\n**Software Platform:**\n- Cloud-based dashboard for distributors and gas companies\n- Demand forecasting using Prophet (Facebook's ML library)\n- Route optimization based on real-time inventory levels\n- Automated alerts for low stock and anomalies\n\n**Achievements:**\n- 20 field prototypes deployed across multiple pilot customers\n- 1 patent filed on the vibro-acoustic detection technology\n- Featured on Hackaday for innovative use of polyurethane 3D printing in enclosure design\n- Selected for the Brinc IoT accelerator program\n- Winner of multiple innovation challenges (ENGIE, ALTICE IoT Challenge)"
+tags:
+  - "IoT"
+  - "Startup"
+  - "NB-IoT"
+  - "ML"
+  - "Prophet"
+proofLinks:
+  - label: "Hackaday article"
+    url: "https://hackaday.com/2017/09/03/polyurethane-meet-3d-printing/"
+  - label: "hackaday.io"
+    url: "https://hackaday.io/project/26941-nesto-prototyping"
+  - label: "1 patent filed — vibro-acoustic detection"
+    url: ""
+images: []
+videos: []
+featured: true
+bench: false
+order: 6
