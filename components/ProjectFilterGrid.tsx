@@ -50,7 +50,7 @@ export default function ProjectFilterGrid({
             onClick={() => setSelectedTag(null)}
             className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
               selectedTag === null
-                ? "bg-accent text-white"
+                ? "bg-accent text-background"
                 : "bg-foreground/10 text-foreground/70 hover:bg-foreground/15"
             }`}
             aria-pressed={selectedTag === null}
@@ -64,7 +64,7 @@ export default function ProjectFilterGrid({
               onClick={() => setSelectedTag((prev) => (prev === tag ? null : tag))}
               className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
                 selectedTag === tag
-                  ? "bg-accent text-white"
+                  ? "bg-accent text-background"
                   : "bg-foreground/10 text-foreground/70 hover:bg-foreground/15"
               }`}
               aria-pressed={selectedTag === tag}

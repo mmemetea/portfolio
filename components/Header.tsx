@@ -33,7 +33,7 @@ export default function Header() {
             <Link
               key={href}
               href={href}
-              className="text-sm font-medium text-foreground/70 transition-colors hover:text-accent"
+              className="text-sm font-medium text-foreground/90 transition-colors hover:text-accent"
             >
               {label}
             </Link>
@@ -48,7 +48,7 @@ export default function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-foreground/70 transition-colors hover:bg-foreground/5"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-foreground/90 transition-colors hover:bg-foreground/5"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -64,7 +64,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/70 transition-colors hover:bg-foreground/5 hover:text-accent"
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/90 transition-colors hover:bg-foreground/5 hover:text-accent"
               >
                 {label}
               </Link>

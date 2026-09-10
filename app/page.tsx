@@ -3,6 +3,7 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 import Container from "@/components/Container";
 import CareerTimeline from "@/components/CareerTimeline";
 import FeaturedProjectCards from "@/components/FeaturedProjectCards";
+import { withBasePath } from "@/lib/paths";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -107,7 +108,7 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden">
+      <section className="gradient-hakka relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-accent/5 blur-3xl"
@@ -115,6 +116,19 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -right-48 -bottom-48 h-[28rem] w-[28rem] rounded-full bg-accent/5 blur-3xl"
+        />
+
+        {/* Mint lagoon grain — the fine texture over the ramp */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: `url("${withBasePath("/grain.png")}")`,
+            backgroundSize: "256px 256px",
+            imageRendering: "pixelated",
+            mixBlendMode: "overlay",
+            opacity: 0.025,
+          }}
         />
 
         <Container>
@@ -127,24 +141,24 @@ export default function Home() {
             <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               {person.h1}
             </h1>
-            <p className="mt-3 text-xl font-medium text-foreground/80 sm:text-2xl">
+            <p className="mt-3 text-xl font-medium text-foreground sm:text-2xl">
               {person.name} — {person.role}
             </p>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground/60">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground/80">
               {person.lead}
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/projects"
-                className="group inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-accent/90 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="group inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-background shadow-sm transition-all hover:bg-accent/90 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 View the work
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
               <a
                 href="#receipts"
-                className="inline-flex items-center gap-2 rounded-lg border border-foreground/15 px-6 py-3 text-sm font-semibold text-foreground/80 transition-colors hover:border-accent/40 hover:text-accent"
+                className="inline-flex items-center gap-2 rounded-lg border border-foreground/25 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:border-accent/40 hover:text-accent"
               >
                 The receipts
               </a>

@@ -55,6 +55,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the Keystatic admin keeps working. `withBasePath()` in `lib/paths.ts`
   prefixes the URLs that bypass basePath (raw proof links, video sources,
   unoptimized image srcs).
+- Retheme to the "Mint lagoon" palette: Minted Bamboo background, deep
+  emerald ink, Forest Tea accent (Tea Leaf in dark mode), with the six-step
+  OKLab gradient ("gradient-hakka") and grain texture as the hero field.
+  Accent buttons and active filter pills use text-background instead of
+  white for AA contrast in both themes; hero and nav text opacities raised
+  where the gradient darkens.
 
 ### Fixed
 
