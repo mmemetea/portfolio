@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   Printer,
   Camera,
@@ -6,7 +7,6 @@ import {
   MapPin,
   Globe,
   GraduationCap,
-  Award,
   Code,
   Cpu,
 } from "lucide-react";
@@ -23,13 +23,6 @@ interface Person {
   email: string;
 }
 
-interface Award {
-  title: string;
-  event: string;
-  date: string;
-  description: string;
-}
-
 // ---------------------------------------------------------------------------
 // Hardcoded fallback data
 // ---------------------------------------------------------------------------
@@ -37,77 +30,41 @@ interface Award {
 const person: Person = {
   name: "Michaël Memeteau",
   bio: [
-    "Seasoned professional bridging software engineering and business strategy with a unique background in mechanical engineering and decades of hands-on technology leadership.",
-    "Throughout my career I have led cross-functional teams delivering innovative products\u2014from IoT hardware accelerators to enterprise-grade SaaS platforms. I thrive at the intersection of design, data, and development, always seeking elegant solutions to complex problems.",
-    "Based in Lisbon, I am passionate about continuous learning, open-source contribution, and mentoring the next generation of engineers.",
+    "Mechanical engineer by training — Arts et Métiers, ENSAM Bordeaux, non-conventional manufacturing. Founder twice: a fleet-management SaaS grown to 28 people and sold, and an IoT platform for bottled-gas logistics that filed a patent and earned four competition wins in 2017 (Productized Lisbon, CleanTech Iberia, ENGIE Singapore, ALTICE Portugal). Product and engineering lead at tb.lx/Daimler and Vision-Box; technical consultant to the European Commission; now automating finance at VW Financial Services.",
+    "Based in Lisbon. Fluent in French, Portuguese and English; Spanish good, German basic. Off the clock: a federated orienteer, a CMAS three-star diver, a cook, and a home workshop whose 3D printers — one self-built Voron among them — also printed prosthetic hands for the e-NABLE community.",
   ].join("\n\n"),
   location: "Lisbon, Portugal",
   email: "mmemetea@gmail.com",
 };
 
-const awards: Award[] = [
-  {
-    title: "1st Prize",
-    event: "Productized Lisbon Hardware Accelerator (KIC)",
-    date: "2017",
-    description:
-      "Won first place at the Productized Lisbon hardware accelerator powered by KIC InnoEnergy.",
-  },
-  {
-    title: "3rd Prize",
-    event: "CleanTech Iberia, KIC InnoEnergy Barcelona",
-    date: "2017",
-    description:
-      "Recognised among top cleantech innovators at the KIC InnoEnergy CleanTech Iberia event.",
-  },
-  {
-    title: "Winner Game Changer",
-    event: "IoT OpenInnov Challenge, ENGIE Singapore",
-    date: "2017",
-    description:
-      "Awarded Game Changer prize at ENGIE\u2019s IoT OpenInnov Challenge in Singapore.",
-  },
-  {
-    title: "Winner",
-    event: "IoT Challenge Portugal Telecom, ALTICE Group",
-    date: "2017",
-    description:
-      "Won the ALTICE Group IoT Challenge for an innovative connected-device solution.",
-  },
-  {
-    title: "Finalist",
-    event: "Shark Tank Portugal",
-    date: "2016",
-    description:
-      "Reached the finals of Shark Tank Portugal, presenting to a national investor panel.",
-  },
-];
-
 const SKILLS: { category: string; items: string[] }[] = [
-  { category: "AI & Data", items: ["AI", "LLMs", "Knowledge Management", "Graph Databases"] },
   {
-    category: "Management",
-    items: ["Project Management", "Coaching", "Leadership", "Agile (Scrum & Kanban)"],
+    category: "What I build with, now",
+    items: [
+      "TypeScript",
+      "Python",
+      ".NET",
+      "OptaPlanner / Timefold",
+      "Kafka",
+      "Spark",
+      "Azure",
+      "AWS",
+      "PowerBI",
+      "LLMs & agents",
+      "Graph databases",
+    ],
   },
   {
-    category: "Development",
-    items: [".NET", "C++", "REST", "gRPC", "TypeScript", "Python", "SQL"],
-  },
-  {
-    category: "Cloud & Data",
-    items: ["Kafka", "Spark", "Azure", "AWS", "MongoDB", "Redis"],
-  },
-  {
-    category: "Design",
-    items: ["Figma", "CAD/CAM (Onshape, Blender, CATIA)", "3D Printing"],
-  },
-  {
-    category: "Process",
-    items: ["BPMN", "FMEA", "SPC", "Kaizen", "JIT", "TRIZ"],
-  },
-  {
-    category: "BI & Reporting",
-    items: ["Tableau", "Power BI"],
+    category: "Where the instincts come from",
+    items: [
+      "CAD/CAM (CATIA, Onshape)",
+      "Firmware & PCBs",
+      "BPMN",
+      "FMEA",
+      "TRIZ",
+      "Kaizen",
+      "3D printing",
+    ],
   },
 ];
 
@@ -162,7 +119,7 @@ export default function AboutPage() {
               About
             </p>
             <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              About
+              The person behind the pattern.
             </h1>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-foreground/60">
               Background, skills, and what I do outside work
@@ -172,9 +129,13 @@ export default function AboutPage() {
           {/* ---- Bio Section ---- */}
           <div className="mb-16 flex flex-col gap-8 sm:flex-row sm:items-start">
             {/* Avatar placeholder */}
-            <div className="flex h-32 w-32 shrink-0 items-center justify-center rounded-full bg-foreground/10 text-2xl font-bold text-foreground/60 sm:h-40 sm:w-40 sm:text-3xl">
-              MM
-            </div>
+            <Image
+              src="/profile.png"
+              alt="Michaël Memeteau"
+              width={160}
+              height={160}
+              className="h-32 w-32 shrink-0 rounded-full object-cover sm:h-40 sm:w-40"
+            />
 
             <div className="flex flex-col gap-4">
               <h2 className="text-2xl font-semibold text-foreground">
@@ -213,7 +174,7 @@ export default function AboutPage() {
             </h2>
             <div className="rounded-xl border border-foreground/10 p-6">
               <h3 className="text-lg font-medium text-foreground">
-                Arts et M\u00e9tiers ParisTech — ENSAM Bordeaux
+                Arts et Métiers — ENSAM Bordeaux
               </h3>
               <p className="text-sm text-foreground/50">1990 &ndash; 1993</p>
               <p className="mt-2 leading-7 text-foreground/70">
@@ -229,7 +190,7 @@ export default function AboutPage() {
               <Code className="h-5 w-5 text-accent" />
               Skills
             </h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 lg:grid-cols-2">
               {SKILLS.map(({ category, items }) => (
                 <div
                   key={category}
@@ -270,35 +231,6 @@ export default function AboutPage() {
                   <span className="text-foreground/40">&middot;</span>
                   <span className="text-foreground/40">{note}</span>
                 </span>
-              ))}
-            </div>
-          </div>
-
-          {/* ---- Awards Section ---- */}
-          <div className="mb-16">
-            <h2 className="mb-6 flex items-center gap-3 text-xl font-semibold text-foreground">
-              <Award className="h-5 w-5 text-accent" />
-              Awards &amp; Recognition
-            </h2>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {awards.map((award, i) => (
-                <div
-                  key={i}
-                  className="rounded-xl border border-foreground/10 p-5 transition-colors hover:border-accent/30"
-                >
-                  <p className="text-sm font-semibold text-accent">
-                    {award.title}
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-foreground">
-                    {award.event}
-                  </p>
-                  <p className="mt-1 text-xs text-foreground/40">{award.date}</p>
-                  {award.description && (
-                    <p className="mt-3 text-sm leading-6 text-foreground/60">
-                      {award.description}
-                    </p>
-                  )}
-                </div>
               ))}
             </div>
           </div>

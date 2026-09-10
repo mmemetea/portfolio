@@ -14,7 +14,7 @@ export default function Footer() {
             </p>
           </div>
           <p className="text-xs text-foreground/50">
-            &copy; {new Date().getFullYear()} Michaël Memeteau. All rights
+            &copy; Michaël Memeteau. All rights
             reserved. &middot;{" "}
             <a
               href="mailto:mmemetea@gmail.com"

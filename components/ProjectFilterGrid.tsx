@@ -1,30 +1,20 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
-
-export interface ProofLink {
-  label: string;
-  url: string;
-}
-
-export interface Project {
-  _id: string;
-  title: string;
-  subtitle?: string | null;
-  description?: string | null;
-  tags?: string[] | null;
-  proofLinks?: ProofLink[] | null;
-  image?: Record<string, unknown> | null;
-  order?: number | null;
-}
+import type { Project } from "@/lib/projects";
 
 interface ProjectFilterGridProps {
   projects: Project[];
+  /** Tag-filter bar; off for small grouped sections (e.g. the bench). */
+  showFilters?: boolean;
 }
 
 export default function ProjectFilterGrid({
   projects,
+  showFilters = true,
 }: ProjectFilterGridProps) {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
@@ -48,104 +38,153 @@ export default function ProjectFilterGrid({
   return (
     <div>
       {/* Filter Bar */}
-      <div
-        className="mb-8 flex flex-wrap gap-2"
-        role="group"
-        aria-label="Filter projects by tag"
-      >
-        <button
-          type="button"
-          onClick={() => setSelectedTag(null)}
-          className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
-            selectedTag === null
-              ? "bg-accent text-white"
-              : "bg-foreground/10 text-foreground/70 hover:bg-foreground/15"
-          }`}
-          aria-pressed={selectedTag === null}
+      {showFilters && (
+        <div
+          className="mb-8 flex flex-wrap gap-2"
+          role="group"
+          aria-label="Filter projects by tag"
         >
-          All
-        </button>
-        {allTags.map((tag) => (
           <button
-            key={tag}
             type="button"
-            onClick={() => setSelectedTag((prev) => (prev === tag ? null : tag))}
+            onClick={() => setSelectedTag(null)}
             className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
-              selectedTag === tag
+              selectedTag === null
                 ? "bg-accent text-white"
                 : "bg-foreground/10 text-foreground/70 hover:bg-foreground/15"
             }`}
-            aria-pressed={selectedTag === tag}
+            aria-pressed={selectedTag === null}
           >
-            {tag}
+            All
           </button>
-        ))}
-      </div>
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              onClick={() => setSelectedTag((prev) => (prev === tag ? null : tag))}
+              className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
+                selectedTag === tag
+                  ? "bg-accent text-white"
+                  : "bg-foreground/10 text-foreground/70 hover:bg-foreground/15"
+              }`}
+              aria-pressed={selectedTag === tag}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Project Grid */}
       {filteredProjects.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredProjects.map((project) => (
-            <article
-              key={project._id}
-              className="group overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.02] transition-all duration-200 hover:scale-[1.02] hover:shadow-lg hover:shadow-foreground/5"
-            >
-              <div className="p-6">
-                {/* Title */}
-                <h3 className="text-xl font-bold text-foreground">
-                  {project.title}
-                </h3>
+          {filteredProjects.map((project) => {
+            const hasImages = project.images && project.images.length > 0;
+            const thumbSrc = hasImages
+              ? project.images![0].src
+              : "/placeholder.svg";
+            const thumbAlt = hasImages
+              ? project.images![0].alt
+              : project.title;
 
-                {/* Subtitle */}
-                {project.subtitle && (
-                  <p className="mt-1 text-sm italic text-foreground/50">
-                    {project.subtitle}
-                  </p>
-                )}
+            return (
+              <article
+                key={project._id}
+                className="group relative overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.02] transition-all duration-200 hover:scale-[1.02] hover:shadow-lg hover:shadow-foreground/5"
+              >
+                  {/* Thumbnail */}
+                  <div className="relative aspect-video w-full overflow-hidden bg-foreground/[0.03]">
+                    <Image
+                      src={thumbSrc}
+                      alt={thumbAlt}
+                      fill
+                      className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
+                        !hasImages ? "opacity-30" : ""
+                      }`}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    {!hasImages && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <p className="text-xs font-medium text-foreground/30">
+                          No images yet
+                        </p>
+                      </div>
+                    )}
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-foreground/[0.02] to-transparent" />
+                  </div>
 
-                {/* Description */}
-                {project.description && (
-                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-foreground/70">
-                    {project.description}
-                  </p>
-                )}
-
-                {/* Tags */}
-                {project.tags && project.tags.length > 0 && (
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent"
+                  <div className="p-6">
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-foreground">
+                      {/* stretched link: ::after fills the card so the whole card is clickable */}
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="after:absolute after:inset-0 after:content-['']"
                       >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                        {project.title}
+                      </Link>
+                    </h3>
 
-                {/* Proof Links */}
-                {project.proofLinks && project.proofLinks.length > 0 && (
-                  <div className="mt-4 border-t border-foreground/10 pt-4">
-                    <div className="flex flex-wrap gap-2">
-                      {project.proofLinks.map((link, i) => (
-                        <a
-                          key={`${link.label}-${i}`}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 rounded-lg bg-accent/10 px-2.5 py-1.5 text-xs font-medium text-accent transition-colors hover:bg-accent/20"
-                        >
-                          <ExternalLink className="h-3 w-3 shrink-0" />
-                          {link.label}
-                        </a>
-                      ))}
-                    </div>
+                    {/* Subtitle */}
+                    {project.subtitle && (
+                      <p className="mt-1 text-sm italic text-foreground/50">
+                        {project.subtitle}
+                      </p>
+                    )}
+
+                    {/* Description */}
+                    {project.description && (
+                      <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-foreground/70">
+                        {project.description}
+                      </p>
+                    )}
+
+                    {/* Tags */}
+                    {project.tags && project.tags.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Proof Links */}
+                    {project.proofLinks && project.proofLinks.length > 0 && (
+                      <div className="mt-4 border-t border-foreground/10 pt-4">
+                        <div className="flex flex-wrap gap-2">
+                  {project.proofLinks.map((link, i) =>
+                    link.url ? (
+                      <a
+                        key={`${link.label}-${i}`}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative z-10 inline-flex items-center gap-1.5 rounded-lg bg-accent/10 px-2.5 py-1.5 text-xs font-medium text-accent transition-colors hover:bg-accent/20"
+                      >
+                        <ExternalLink className="h-3 w-3 shrink-0" />
+                        {link.label}
+                      </a>
+                    ) : (
+                      <span
+                        key={`${link.label}-${i}`}
+                        className="inline-flex items-center rounded-lg bg-foreground/5 px-2.5 py-1.5 text-xs font-medium text-foreground/50"
+                      >
+                        {link.label}
+                      </span>
+                    )
+                  )}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </article>
-          ))}
+                </article>
+            );
+          })}
         </div>
       ) : (
         <p className="py-16 text-center text-foreground/50">

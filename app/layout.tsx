@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -34,7 +35,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        <script
+        {/* no-FOUC theme boot; beforeInteractive runs once before hydration */}
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: darkModeScript }}
         />
       </head>

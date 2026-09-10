@@ -24,7 +24,7 @@ export default function Header() {
           href="/"
           className="text-lg font-semibold tracking-tight text-foreground transition-colors hover:text-accent"
         >
-          M.Memeteau
+          Michaël Memeteau
         </Link>
 
         {/* Desktop nav */}
