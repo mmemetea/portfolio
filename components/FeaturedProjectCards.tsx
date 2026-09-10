@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { getFeaturedProjects } from "@/lib/content";
 import type { Project } from "@/lib/projects";
+import { withBasePath } from "@/lib/paths";
 
 export default async function FeaturedProjectCards() {
   const featuredProjects: Project[] = await getFeaturedProjects();
@@ -12,8 +13,8 @@ export default async function FeaturedProjectCards() {
       {featuredProjects.map((project) => {
         const hasImages = project.images && project.images.length > 0;
         const thumbSrc = hasImages
-          ? project.images![0].src
-          : "/placeholder.svg";
+          ? withBasePath(project.images![0].src)
+          : withBasePath("/placeholder.svg");
         const thumbAlt = hasImages
           ? project.images![0].alt
           : project.title;
@@ -77,7 +78,7 @@ export default async function FeaturedProjectCards() {
                 {firstProof &&
                   (firstProof.url ? (
                     <a
-                      href={firstProof.url}
+                      href={withBasePath(firstProof.url)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="relative z-10 mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80"

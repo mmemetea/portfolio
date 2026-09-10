@@ -5,6 +5,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import Container from "@/components/Container";
 import ImageCarousel from "@/components/ImageCarousel";
 import { getAllProjects, getProjectBySlug } from "@/lib/content";
+import { withBasePath } from "@/lib/paths";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -91,10 +92,10 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     key={i}
                     controls
                     preload="metadata"
-                    poster={video.poster}
+                    poster={video.poster ? withBasePath(video.poster) : undefined}
                     className="aspect-video w-full rounded-xl border border-foreground/10 bg-black"
                   >
-                    <source src={video.src} type="video/mp4" />
+                    <source src={withBasePath(video.src)} type="video/mp4" />
                   </video>
                 ))}
               </div>
@@ -151,7 +152,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     link.url ? (
                       <a
                         key={`${link.label}-${i}`}
-                        href={link.url}
+                        href={withBasePath(link.url)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 rounded-lg border border-foreground/10 p-3 text-sm font-medium text-foreground transition-colors hover:border-accent/30 hover:text-accent"

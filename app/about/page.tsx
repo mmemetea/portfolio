@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withBasePath } from "@/lib/paths";
 import Image from "next/image";
 import {
   Printer,
@@ -130,7 +131,7 @@ export default function AboutPage() {
           <div className="mb-16 flex flex-col gap-8 sm:flex-row sm:items-start">
             {/* Avatar placeholder */}
             <Image
-              src="/profile.png"
+              src={withBasePath("/profile.png")}
               alt="Michaël Memeteau"
               width={160}
               height={160}

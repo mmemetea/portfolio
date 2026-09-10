@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
+import { withBasePath } from "@/lib/paths";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { ProjectImage } from "@/lib/projects";
 
@@ -45,7 +46,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
     return (
       <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03]">
         <Image
-          src="/placeholder.svg"
+          src={withBasePath("/placeholder.svg")}
           alt="No images yet"
           fill
           className="object-cover opacity-40"
@@ -65,7 +66,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
       {/* Main Image */}
       <div className="group relative aspect-video w-full overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03]">
         <Image
-          src={images[current].src}
+          src={withBasePath(images[current].src)}
           alt={images[current].alt}
           fill
           className="object-cover transition-opacity duration-300"
@@ -125,7 +126,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
               }`}
             >
               <Image
-                src={img.src}
+                src={withBasePath(img.src)}
                 alt={img.alt}
                 fill
                 className="object-cover"

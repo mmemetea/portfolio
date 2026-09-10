@@ -24,6 +24,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ImageCarousel` component used by the project detail pages.
 - `FeaturedProjectCards` async server component, mounted in a "The work, up
   front." section on the home page.
+- GitHub Pages deployment: `scripts/export.sh` builds the static export
+  (setting aside the dev-only Keystatic admin), and
+  `.github/workflows/deploy.yml` publishes it to mmemetea.github.io/portfolio.
+- "The paper trail" section on the NESTO case study, linking the original
+  pitch decks and documents now served from `public/projects/nesto/`.
 - Project media library under `public/projects/` (photos, GIFs, videos with
   posters), profile photo, and placeholder SVG.
 - "Off the clock, on the bench" section on the Projects page for maker builds,
@@ -45,6 +50,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   current year.
 - Upgraded `next` to `^16.2.10`; added `@keystatic/core`, `@keystatic/next`, and
   `@playwright/test`.
+- Static export serves under `/portfolio`: basePath, trailing slashes, and
+  unoptimized images apply only to export builds — dev stays unprefixed so
+  the Keystatic admin keeps working. `withBasePath()` in `lib/paths.ts`
+  prefixes the URLs that bypass basePath (raw proof links, video sources,
+  unoptimized image srcs).
 
 ### Fixed
 

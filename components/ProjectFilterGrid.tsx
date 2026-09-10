@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import type { Project } from "@/lib/projects";
+import { withBasePath } from "@/lib/paths";
 
 interface ProjectFilterGridProps {
   projects: Project[];
@@ -80,8 +81,8 @@ export default function ProjectFilterGrid({
           {filteredProjects.map((project) => {
             const hasImages = project.images && project.images.length > 0;
             const thumbSrc = hasImages
-              ? project.images![0].src
-              : "/placeholder.svg";
+              ? withBasePath(project.images![0].src)
+              : withBasePath("/placeholder.svg");
             const thumbAlt = hasImages
               ? project.images![0].alt
               : project.title;
@@ -161,7 +162,7 @@ export default function ProjectFilterGrid({
                     link.url ? (
                       <a
                         key={`${link.label}-${i}`}
-                        href={link.url}
+                        href={withBasePath(link.url)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="relative z-10 inline-flex items-center gap-1.5 rounded-lg bg-accent/10 px-2.5 py-1.5 text-xs font-medium text-accent transition-colors hover:bg-accent/20"

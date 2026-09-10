@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, Download, ExternalLink } from "lucide-react";
 import Container from "@/components/Container";
 import ImageCarousel from "@/components/ImageCarousel";
 import { getProjectBySlug } from "@/lib/content";
+import { withBasePath } from "@/lib/paths";
 
 // Bespoke case study: this static route shadows /projects/[slug] for NESTO.
 // The slug is fixed by the route itself — it is never passed in params.
@@ -16,6 +17,19 @@ export async function generateMetadata(): Promise<Metadata> {
     description: project.description ?? undefined,
   };
 }
+
+// Original decks and documents — served from public/projects/nesto/.
+const documents = [
+  { label: "Functional overview (PNG)", href: "/projects/nesto/NESTO - Functional Overview.png" },
+  { label: "Pitch deck — Brinc accelerator, 2018 Q4 (PNG)", href: "/projects/nesto/NESTO Pitch Deck Brinc 2018Q4.png" },
+  { label: "Business canvas — May 2016 (PDF)", href: "/projects/nesto/nesto_business_canvas_20160525.pdf" },
+  { label: "NESTO Gas — full deck, July 2016 (PPTX)", href: "/projects/nesto/nesto_gas_20160709.pptx" },
+  { label: "NESTO Gas — EDP (PDF)", href: "/projects/nesto/nesto_gas_edp.pdf" },
+  { label: "NESTO Gas — InnoEnergy (PPTX)", href: "/projects/nesto/nesto_gas_innoenergy.pptx" },
+  { label: "NESTO Gas — Oz Energia (PPTX)", href: "/projects/nesto/nesto_gas_oz_energia.pptx" },
+  { label: "NESTO Gas — PV3 (PPTX)", href: "/projects/nesto/nesto_gas_pv3.pptx" },
+  { label: "NESTO Gas — Web Summit (PPSX)", href: "/projects/nesto/nesto_gas_websummit.ppsx" },
+];
 
 export default async function NestoPage() {
   const project = await getProjectBySlug("nesto");
@@ -104,6 +118,26 @@ export default async function NestoPage() {
                 })}
               </div>
             )}
+
+            {/* Paper trail — the original decks */}
+            <div className="rounded-xl border border-foreground/10 p-6">
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-foreground/50">
+                The paper trail
+              </h2>
+              <ul className="space-y-2">
+                {documents.map((doc) => (
+                  <li key={doc.href}>
+                    <a
+                      href={withBasePath(doc.href)}
+                      className="flex items-center gap-2 text-sm font-medium text-foreground/80 transition-colors hover:text-accent"
+                    >
+                      <Download className="h-4 w-4 shrink-0 text-accent/60" />
+                      {doc.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Sidebar */}
@@ -119,7 +153,7 @@ export default async function NestoPage() {
                     link.url ? (
                       <a
                         key={`${link.label}-${i}`}
-                        href={link.url}
+                        href={withBasePath(link.url)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 rounded-lg border border-foreground/10 p-3 text-sm font-medium text-foreground transition-colors hover:border-accent/30 hover:text-accent"
