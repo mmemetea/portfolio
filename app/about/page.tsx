@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { withBasePath } from "@/lib/paths";
+import { snakeCaseTag } from "@/lib/projects";
 import Image from "next/image";
 import {
   Printer,
@@ -201,7 +202,7 @@ export default function AboutPage() {
                     {category}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {items.map((item) => (
+                    {items.map(snakeCaseTag).map((item) => (
                       <span
                         key={item}
                         className="rounded-full bg-foreground/5 px-3 py-1 text-sm text-secondary"

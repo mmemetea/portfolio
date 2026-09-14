@@ -88,6 +88,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   longer float in a half-empty three-column grid.
 - Theme toggle and hamburger buttons are 44px tap targets; project grid
   cards flex to equal row heights with proof rows aligned to card bottoms.
+- Experience-page `techStack` pills and About-page skill chips render
+  snake_case too: both pages map their inline arrays through
+  `snakeCaseTag()` at the render boundary. The rule was hardened for the
+  richer skill strings — any run outside `[a-z0-9+.#]` collapses to one
+  underscore ("CAD/CAM (CATIA, Onshape)" → "cad_cam_catia_onshape",
+  "LLMs & agents" → "llms_agents") with no change to existing project tags.
 
 ### Fixed
 

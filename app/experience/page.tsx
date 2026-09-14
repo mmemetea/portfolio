@@ -1,5 +1,6 @@
 import { Calendar, Briefcase } from "lucide-react";
 import Container from "@/components/Container";
+import { snakeCaseTag } from "@/lib/projects";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -354,7 +355,7 @@ export default function ExperiencePage() {
                     {/* Tech stack pills */}
                     {exp.techStack && exp.techStack.length > 0 && (
                       <div className="mt-5 flex flex-wrap gap-1.5">
-                        {exp.techStack.map((tech) => (
+                        {exp.techStack.map(snakeCaseTag).map((tech) => (
                           <span
                             key={tech}
                             className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-foreground"
