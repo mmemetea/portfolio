@@ -34,6 +34,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - "Off the clock, on the bench" section on the Projects page for maker builds,
   rendered without tag filters.
 - `.scrollbar-hide` utility class in `globals.css`.
+- Custom 404 page (`app/not-found.tsx`) in the site's voice — "404 · no
+  receipt" eyebrow, mint-styled, rendered inside the normal layout with a
+  link home.
+- `text-secondary` ink tokens in `globals.css` (`#38705f` light, `#c9e6d9`
+  dark): fixed colors chosen so secondary text keeps ≥4.5:1 on backgrounds,
+  tinted sections and chip fills in both themes.
+- `EmptyMedia` component — the single designed "no images yet" treatment
+  (icon + label in secondary ink) used by `ProjectFilterGrid`,
+  `FeaturedProjectCards` and `ImageCarousel`.
+- Active navigation state in `Header` via `usePathname` + `aria-current`;
+  the current page renders semibold ink.
 
 ### Changed
 
@@ -61,12 +72,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Accent buttons and active filter pills use text-background instead of
   white for AA contrast in both themes; hero and nav text opacities raised
   where the gradient darkens.
+- All tags render snake_case (`ai_agents`, `hl7_fhir`, `power_query`):
+  `snakeCaseTag()` in `lib/projects.ts` is applied at the single content
+  boundary in `lib/content.ts`, so filter pills, card chips and detail pages
+  stay consistent by construction; article tag literals rewritten in place.
+  Separators become underscores and case drops, but tech-significant symbols
+  survive (`c++`, `.net`).
+- Secondary text across every page switched from opacity-diluted
+  `text-foreground/50–80` utilities to the fixed `text-secondary` token;
+  hover states on accent links now strengthen (`hover:text-foreground`)
+  instead of dimming.
+- Tag and proof chips use foreground ink on the mint `accent/10` fill
+  (AA-safe in both themes); inactive filter pills use secondary ink.
+- Articles page renders as a single `max-w-3xl` column — two cards no
+  longer float in a half-empty three-column grid.
+- Theme toggle and hamburger buttons are 44px tap targets; project grid
+  cards flex to equal row heights with proof rows aligned to card bottoms.
 
 ### Fixed
 
 - `/projects/nesto` always 404'd: the bespoke static page destructured a
   `params.slug` that never exists on a static route. The slug is now fixed in
   the page, and `/projects/[slug]` no longer emits a duplicate param for it.
+- Hero copy no longer depends on where each line lands on the gradient
+  ramp: a blurred `bg-background/85` scrim washes the copy zone toward the
+  page background. Pixel-measured contrast on the lead, eyebrow and ghost
+  CTA now measures 4.8–8.8:1 in both themes (was 1.96–3.36:1 in places).
+- "Images: 0 files" CMS language no longer leaks onto project detail
+  sidebars; the row only renders when files exist.
 
 ### Removed
 

@@ -131,6 +131,14 @@ export default function Home() {
           }}
         />
 
+        {/* Readability scrim — washes the ramp toward the page background
+            behind the copy block so text contrast is controlled, not
+            dependent on where each line lands on the gradient. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-40 top-8 h-[44rem] w-[68rem] rounded-full bg-background/85 blur-3xl"
+        />
+
         <Container>
           <div className="relative py-24 sm:py-32 lg:py-40">
             <div className="mb-8 h-1 w-16 rounded-full bg-gradient-to-r from-accent to-accent/40" />
@@ -144,7 +152,7 @@ export default function Home() {
             <p className="mt-3 text-xl font-medium text-foreground sm:text-2xl">
               {person.name} — {person.role}
             </p>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-foreground/80">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-secondary">
               {person.lead}
             </p>
 
@@ -174,7 +182,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold tracking-tight text-foreground">
               The expensive part is never the code.
             </h2>
-            <p className="mt-4 text-lg leading-8 text-foreground/60">
+            <p className="mt-4 text-lg leading-8 text-secondary">
               It&rsquo;s the process that grew around it. The tender spreadsheet only
               one person can operate. The test plan that needs a physical
               passage for every product variant. The monthly close held
@@ -192,7 +200,7 @@ export default function Home() {
           <p className="max-w-3xl text-2xl font-semibold leading-9 tracking-tight text-foreground">
             Every claim on this site links to something you can check.
           </p>
-          <p className="mt-4 max-w-2xl text-foreground/60">
+          <p className="mt-4 max-w-2xl text-secondary">
             A Hackaday article. A published EU study. An acquisition in the
             public record. Where there is no receipt, the claim says so. Where
             the work is in progress, it says that too.
@@ -208,14 +216,14 @@ export default function Home() {
               <h2 className="text-3xl font-bold tracking-tight text-foreground">
                 The work, up front.
               </h2>
-              <p className="mt-2 max-w-2xl text-foreground/60">
+              <p className="mt-2 max-w-2xl text-secondary">
                 What the pattern looks like when it lands — each card with
                 its receipt.
               </p>
             </div>
             <Link
               href="/projects"
-              className="hidden items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80 sm:inline-flex"
+              className="hidden items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-foreground sm:inline-flex"
             >
               All projects
               <ArrowRight className="h-4 w-4" />
@@ -226,7 +234,7 @@ export default function Home() {
 
           <Link
             href="/projects"
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80 sm:hidden"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-foreground sm:hidden"
           >
             All projects
             <ArrowRight className="h-4 w-4" />
@@ -251,13 +259,13 @@ export default function Home() {
                   <h3 className="text-xl font-semibold text-foreground">
                     {cap.title}
                   </h3>
-                  <p className="mt-3 leading-7 text-foreground/70">{cap.body}</p>
+                  <p className="mt-3 leading-7 text-secondary">{cap.body}</p>
                   {cap.receipt && (
                     <a
                       href={cap.receipt.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-foreground"
                     >
                       Receipt: {cap.receipt.label}
                       <ExternalLink className="h-3.5 w-3.5" />
@@ -281,7 +289,7 @@ export default function Home() {
               {notClaimed.map((item) => (
                 <li
                   key={item}
-                  className="flex items-start gap-3 leading-7 text-foreground/70"
+                  className="flex items-start gap-3 leading-7 text-secondary"
                 >
                   <span
                     aria-hidden="true"
@@ -291,7 +299,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-foreground/60">
+            <p className="mt-6 text-secondary">
               A portfolio that only rounds up is a brochure; this one aims to
               be a record.
             </p>
@@ -307,14 +315,14 @@ export default function Home() {
               <h2 className="text-3xl font-bold tracking-tight text-foreground">
                 The years, for the record.
               </h2>
-              <p className="mt-2 max-w-2xl text-foreground/60">
+              <p className="mt-2 max-w-2xl text-secondary">
                 30 years across automotive, IoT, SaaS, AI, and consulting —
                 each role a chapter of the same pattern.
               </p>
             </div>
             <Link
               href="/experience"
-              className="hidden items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80 sm:inline-flex"
+              className="hidden items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-foreground sm:inline-flex"
             >
               Full Timeline
               <ArrowRight className="h-4 w-4" />
@@ -325,7 +333,7 @@ export default function Home() {
 
           <Link
             href="/experience"
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80 sm:hidden"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-foreground sm:hidden"
           >
             Full Timeline
             <ArrowRight className="h-4 w-4" />
@@ -336,7 +344,7 @@ export default function Home() {
       {/* ── This portfolio is the work, too ──────────────────────── */}
       <section className="border-t border-foreground/10 py-16">
         <Container>
-          <p className="text-foreground/60">
+          <p className="text-secondary">
             This portfolio is the work, too. Next.js 16, App Router, no CMS
             dependency — content lives in the repo, versioned with the code,
             and every proof link resolves.{" "}
@@ -344,7 +352,7 @@ export default function Home() {
               href="https://github.com/mmemetea"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-accent transition-colors hover:text-accent/80"
+              className="inline-flex items-center gap-1 font-medium text-accent transition-colors hover:text-foreground"
             >
               GitHub
               <ExternalLink className="h-3.5 w-3.5" />

@@ -44,7 +44,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     <section className="py-16 sm:py-24">
       <Container>
         {/* Breadcrumb */}
-        <nav className="mb-8 flex items-center gap-2 text-sm text-foreground/50">
+        <nav className="mb-8 flex items-center gap-2 text-sm text-secondary">
           <Link
             href="/projects"
             className="inline-flex items-center gap-1.5 transition-colors hover:text-accent"
@@ -53,7 +53,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             Projects
           </Link>
           <span>/</span>
-          <span className="text-foreground/70">{project.title}</span>
+          <span className="text-secondary">{project.title}</span>
         </nav>
 
         {/* Hero */}
@@ -119,7 +119,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   if (trimmed.startsWith("- ")) {
                     const items = trimmed.split("\n").filter((l) => l.startsWith("- "));
                     return (
-                      <ul key={i} className="ml-4 list-disc space-y-1 text-foreground/70">
+                      <ul key={i} className="ml-4 list-disc space-y-1 text-secondary">
                         {items.map((item, j) => (
                           <li key={j} className="text-sm leading-relaxed">
                             {formatRichText(item.replace(/^-\s/, ""))}
@@ -130,7 +130,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   }
 
                   return (
-                    <p key={i} className="text-sm leading-relaxed text-foreground/70">
+                    <p key={i} className="text-sm leading-relaxed text-secondary">
                       {formatRichText(trimmed)}
                     </p>
                   );
@@ -144,7 +144,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {/* Proof Links */}
             {project.proofLinks && project.proofLinks.length > 0 && (
               <div className="rounded-xl border border-foreground/10 p-6">
-                <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-foreground/50">
+                <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-secondary">
                   Proof of Work
                 </h2>
                 <div className="space-y-3">
@@ -163,7 +163,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     ) : (
                       <p
                         key={`${link.label}-${i}`}
-                        className="flex items-center gap-2 rounded-lg border border-foreground/10 p-3 text-sm font-medium text-foreground/60"
+                        className="flex items-center gap-2 rounded-lg border border-foreground/10 p-3 text-sm font-medium text-secondary"
                       >
                         {link.label}
                       </p>
@@ -175,18 +175,18 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
             {/* Quick info */}
             <div className="rounded-xl border border-foreground/10 p-6">
-              <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-foreground/50">
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-widest text-secondary">
                 Details
               </h2>
               <dl className="space-y-3 text-sm">
                 {project.tags && (
                   <div>
-                    <dt className="text-foreground/50">Technologies</dt>
+                    <dt className="text-secondary">Technologies</dt>
                     <dd className="mt-1 flex flex-wrap gap-1.5">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded bg-foreground/5 px-2 py-0.5 text-xs text-foreground/70"
+                          className="rounded bg-foreground/5 px-2 py-0.5 text-xs text-secondary"
                         >
                           {tag}
                         </span>
@@ -194,13 +194,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                     </dd>
                   </div>
                 )}
-                <div>
-                  <dt className="text-foreground/50">Images</dt>
-                  <dd className="mt-1 text-foreground/70">
-                    {(project.images ?? []).length} file
-                    {(project.images ?? []).length !== 1 ? "s" : ""}
-                  </dd>
-                </div>
+                {(project.images ?? []).length > 0 && (
+                  <div>
+                    <dt className="text-secondary">Images</dt>
+                    <dd className="mt-1 text-secondary">
+                      {project.images!.length} file
+                      {project.images!.length !== 1 ? "s" : ""}
+                    </dd>
+                  </div>
+                )}
               </dl>
             </div>
           </aside>
@@ -210,7 +212,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <div className="mt-16 border-t border-foreground/10 pt-8">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+            className="inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to All Projects

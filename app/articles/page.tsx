@@ -26,7 +26,7 @@ const articles: Article[] = [
     date: "2021-03-15",
     excerpt:
       "How we implemented Kanban at tb.lx for the Daimler after-sales digital transformation. A practical account of moving from Scrum to a flow-based approach that improved delivery predictability and reduced overhead for the team.",
-    tags: ["Agile", "Kanban", "Digital Transformation"],
+    tags: ["agile", "kanban", "digital_transformation"],
   },
   {
     _id: "fallback-polyurethane",
@@ -36,7 +36,7 @@ const articles: Article[] = [
     date: "2017-09-03",
     excerpt:
       "Documenting the NESTO prototyping journey — using 3D-printed molds to produce polyurethane sensor enclosures for IoT gas level monitors. A maker's take on bridging the gap between digital fabrication and industrial materials.",
-    tags: ["IoT", "3D Printing", "Making"],
+    tags: ["iot", "3d_printing", "making"],
   },
 ];
 
@@ -57,13 +57,13 @@ export default function ArticlesPage() {
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             Articles
           </h1>
-          <p className="mt-3 text-lg text-foreground/60">
+          <p className="mt-3 text-lg text-secondary">
             Published writing and talks
           </p>
         </div>
 
         {articles.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid max-w-3xl gap-6">
             {articles.map((article) => (
               <article
                 key={article._id}
@@ -84,14 +84,14 @@ export default function ArticlesPage() {
                 {/* Date */}
                 <time
                   dateTime={article.date}
-                  className="mt-2 block text-sm text-foreground/50"
+                  className="mt-2 block text-sm text-secondary"
                 >
                   {formatDate(article.date)}
                 </time>
 
                 {/* Excerpt */}
                 {article.excerpt && (
-                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-foreground/70">
+                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-secondary">
                     {article.excerpt}
                   </p>
                 )}
@@ -102,7 +102,7 @@ export default function ArticlesPage() {
                     {article.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent"
+                        className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-foreground"
                       >
                         {tag}
                       </span>
@@ -116,7 +116,7 @@ export default function ArticlesPage() {
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-foreground"
                   >
                     Read on {article.publication ?? "external site"}
                     <ExternalLink className="h-3.5 w-3.5" />
@@ -126,7 +126,7 @@ export default function ArticlesPage() {
             ))}
           </div>
         ) : (
-          <p className="py-16 text-center text-foreground/50">
+          <p className="py-16 text-center text-secondary">
             No articles yet. Check back soon.
           </p>
         )}

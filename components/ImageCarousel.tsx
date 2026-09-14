@@ -1,9 +1,9 @@
 "use client";
-
 import { useState, useCallback, useEffect, useRef } from "react";
 import Image from "next/image";
-import { withBasePath } from "@/lib/paths";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import EmptyMedia from "./EmptyMedia";
+import { withBasePath } from "@/lib/paths";
 import type { ProjectImage } from "@/lib/projects";
 
 interface ImageCarouselProps {
@@ -45,18 +45,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   if (total === 0) {
     return (
       <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.03]">
-        <Image
-          src={withBasePath("/placeholder.svg")}
-          alt="No images yet"
-          fill
-          className="object-cover opacity-40"
-          priority
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-sm font-medium text-foreground/40">
-            Images coming soon
-          </p>
-        </div>
+        <EmptyMedia label="Images coming soon" />
       </div>
     );
   }

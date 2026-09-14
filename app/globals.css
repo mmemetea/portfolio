@@ -9,11 +9,15 @@
   --background: #effbf4;
   --foreground: #0b5642;
   --accent: #147a5f;
+  /* Secondary ink is a fixed token, not opacity dilution of foreground —
+     body copy keeps ≥4.5:1 on background, /0.02 tints and chip fills. */
+  --text-secondary: #38705f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-secondary: var(--text-secondary);
   --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -23,6 +27,7 @@
   --background: #0b5642;
   --foreground: #effbf4;
   --accent: #8fe2cb;
+  --text-secondary: #c9e6d9;
 }
 
 body {

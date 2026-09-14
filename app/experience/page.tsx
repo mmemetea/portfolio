@@ -253,7 +253,7 @@ export default function ExperiencePage() {
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             Experience
           </h1>
-          <p className="mt-4 text-lg text-foreground/60">
+          <p className="mt-4 text-lg text-secondary">
             My professional journey across industries — from founding a SaaS
             startup to shaping EU digital transformation policy.
           </p>
@@ -313,16 +313,16 @@ export default function ExperiencePage() {
                         <h3 className="text-lg font-semibold text-foreground">
                           {exp.role}
                         </h3>
-                        <p className="text-sm font-medium text-foreground/80">
+                        <p className="text-sm font-medium text-secondary">
                           {exp.company}
                         </p>
                         {exp.client && (
-                          <p className="text-sm text-foreground/50">
+                          <p className="text-sm text-secondary">
                             for {exp.client}
                           </p>
                         )}
                         {exp.location && (
-                          <p className="text-sm text-foreground/40">
+                          <p className="text-sm text-secondary">
                             {exp.location}
                           </p>
                         )}
@@ -331,7 +331,7 @@ export default function ExperiencePage() {
 
                     {/* Description */}
                     {exp.description && (
-                      <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                      <p className="mt-4 text-sm leading-relaxed text-secondary">
                         {exp.description}
                       </p>
                     )}
@@ -342,7 +342,7 @@ export default function ExperiencePage() {
                         {exp.highlights.map((highlight) => (
                           <li
                             key={highlight}
-                            className="flex items-start gap-2 text-sm text-foreground/60"
+                            className="flex items-start gap-2 text-sm text-secondary"
                           >
                             <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-accent/60" />
                             {highlight}
@@ -357,7 +357,7 @@ export default function ExperiencePage() {
                         {exp.techStack.map((tech) => (
                           <span
                             key={tech}
-                            className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent"
+                            className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-foreground"
                           >
                             {tech}
                           </span>

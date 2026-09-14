@@ -122,7 +122,7 @@ export default function AboutPage() {
             <h1 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
               The person behind the pattern.
             </h1>
-            <p className="mt-4 max-w-2xl text-lg leading-8 text-foreground/60">
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-secondary">
               Background, skills, and what I do outside work
             </p>
           </div>
@@ -144,12 +144,12 @@ export default function AboutPage() {
               </h2>
 
               {bioParagraphs.map((p, i) => (
-                <p key={i} className="max-w-prose leading-7 text-foreground/70">
+                <p key={i} className="max-w-prose leading-7 text-secondary">
                   {p}
                 </p>
               ))}
 
-              <ul className="mt-2 flex flex-col gap-2 text-sm text-foreground/60">
+              <ul className="mt-2 flex flex-col gap-2 text-sm text-secondary">
                 <li className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-accent" />
                   {person.location}
@@ -177,8 +177,8 @@ export default function AboutPage() {
               <h3 className="text-lg font-medium text-foreground">
                 Arts et Métiers — ENSAM Bordeaux
               </h3>
-              <p className="text-sm text-foreground/50">1990 &ndash; 1993</p>
-              <p className="mt-2 leading-7 text-foreground/70">
+              <p className="text-sm text-secondary">1990 &ndash; 1993</p>
+              <p className="mt-2 leading-7 text-secondary">
                 Mechanical Engineering, specialization in Production, Research
                 &amp; Development for Non-Conventional Manufacturing Processes
               </p>
@@ -204,7 +204,7 @@ export default function AboutPage() {
                     {items.map((item) => (
                       <span
                         key={item}
-                        className="rounded-full bg-foreground/5 px-3 py-1 text-sm text-foreground/70"
+                        className="rounded-full bg-foreground/5 px-3 py-1 text-sm text-secondary"
                       >
                         {item}
                       </span>
@@ -225,12 +225,12 @@ export default function AboutPage() {
               {LANGUAGES.map(({ name, level, note }) => (
                 <span
                   key={name}
-                  className="inline-flex items-center gap-2 rounded-full border border-foreground/10 px-4 py-2 text-sm text-foreground/70"
+                  className="inline-flex items-center gap-2 rounded-full border border-foreground/10 px-4 py-2 text-sm text-secondary"
                 >
                   <span className="font-medium text-foreground">{name}</span>
                   <span className="text-accent">{level}</span>
-                  <span className="text-foreground/40">&middot;</span>
-                  <span className="text-foreground/40">{note}</span>
+                  <span className="text-secondary">&middot;</span>
+                  <span className="text-secondary">{note}</span>
                 </span>
               ))}
             </div>
@@ -261,7 +261,7 @@ export default function AboutPage() {
                 href="https://www.youtube.com/playlist?list=PLxgWx23tRb-OUprTZU4c9d2UtylOSdO7p"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-foreground"
               >
                 View full playlist on YouTube
                 <ExternalLink className="h-3.5 w-3.5" />
@@ -284,7 +284,7 @@ export default function AboutPage() {
                     className="group flex items-center gap-3 rounded-xl border border-foreground/10 p-4 transition-colors hover:border-accent/30 hover:bg-foreground/[0.02]"
                   >
                     <Camera className="h-5 w-5 shrink-0 text-foreground/30 transition-colors group-hover:text-accent" />
-                    <span className="flex-1 text-sm font-medium text-foreground/70 transition-colors group-hover:text-foreground">
+                    <span className="flex-1 text-sm font-medium text-secondary transition-colors group-hover:text-foreground">
                       {album.title}
                     </span>
                     <ExternalLink className="h-4 w-4 shrink-0 text-foreground/20 transition-colors group-hover:text-accent" />
@@ -298,7 +298,7 @@ export default function AboutPage() {
               <h3 className="mb-4 text-lg font-medium text-foreground">
                 Other Interests
               </h3>
-              <ul className="flex flex-col gap-2 text-foreground/70">
+              <ul className="flex flex-col gap-2 text-secondary">
                 {OTHER_INTERESTS.map((interest) => (
                   <li key={interest} className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />

@@ -48,7 +48,7 @@ export default function CareerTimeline({ entries }: Props) {
         <button
           onClick={() => scroll("left")}
           aria-label="Scroll left"
-          className="absolute left-0 top-1/2 z-20 -translate-y-1/2 hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-foreground/10 bg-background/90 text-foreground/60 shadow-sm backdrop-blur-sm transition-colors hover:text-accent hover:border-accent/30"
+          className="absolute left-0 top-1/2 z-20 -translate-y-1/2 hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-foreground/10 bg-background/90 text-secondary shadow-sm backdrop-blur-sm transition-colors hover:text-accent hover:border-accent/30"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -59,7 +59,7 @@ export default function CareerTimeline({ entries }: Props) {
         <button
           onClick={() => scroll("right")}
           aria-label="Scroll right"
-          className="absolute right-0 top-1/2 z-20 -translate-y-1/2 hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-foreground/10 bg-background/90 text-foreground/60 shadow-sm backdrop-blur-sm transition-colors hover:text-accent hover:border-accent/30"
+          className="absolute right-0 top-1/2 z-20 -translate-y-1/2 hidden sm:flex h-8 w-8 items-center justify-center rounded-full border border-foreground/10 bg-background/90 text-secondary shadow-sm backdrop-blur-sm transition-colors hover:text-accent hover:border-accent/30"
         >
           <ChevronRight className="h-4 w-4" />
         </button>
@@ -91,16 +91,16 @@ export default function CareerTimeline({ entries }: Props) {
                 }`}
               />
 
-              <span className={`mt-2 text-xs font-semibold whitespace-nowrap ${entry.current ? "text-accent" : "text-foreground/40"}`}>
+              <span className={`mt-2 text-xs font-semibold whitespace-nowrap ${entry.current ? "text-accent" : "text-secondary"}`}>
                 {entry.year}
                 {entry.current ? " –" : ""}
               </span>
 
-              <span className="mt-1 max-w-[110px] text-center text-xs font-medium leading-tight text-foreground/80">
+              <span className="mt-1 max-w-[110px] text-center text-xs font-medium leading-tight text-secondary">
                 {entry.company}
               </span>
 
-              <span className="mt-0.5 max-w-[110px] text-center text-[10px] leading-tight text-foreground/40">
+              <span className="mt-0.5 max-w-[110px] text-center text-[10px] leading-tight text-secondary">
                 {entry.role}
               </span>
             </div>

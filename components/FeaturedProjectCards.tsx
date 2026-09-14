@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { getFeaturedProjects } from "@/lib/content";
 import type { Project } from "@/lib/projects";
+import EmptyMedia from "./EmptyMedia";
 import { withBasePath } from "@/lib/paths";
 
 export default async function FeaturedProjectCards() {
@@ -11,13 +12,7 @@ export default async function FeaturedProjectCards() {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {featuredProjects.map((project) => {
-        const hasImages = project.images && project.images.length > 0;
-        const thumbSrc = hasImages
-          ? withBasePath(project.images![0].src)
-          : withBasePath("/placeholder.svg");
-        const thumbAlt = hasImages
-          ? project.images![0].alt
-          : project.title;
+        const firstImage = project.images?.[0];
         const firstProof = project.proofLinks?.[0];
 
         return (
@@ -26,18 +21,21 @@ export default async function FeaturedProjectCards() {
             className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-foreground/10 bg-background transition-all hover:border-accent/30 hover:shadow-md"
           >
               {/* Thumbnail */}
-              <div className="relative aspect-video w-full overflow-hidden bg-foreground/[0.03]">
-                <Image
-                  src={thumbSrc}
-                  alt={thumbAlt}
-                  fill
-                  className={`object-cover transition-transform duration-300 group-hover:scale-105 ${
-                    !hasImages ? "opacity-20" : ""
-                  }`}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
+              <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-foreground/[0.03]">
+                {firstImage ? (
+                  <Image
+                    src={withBasePath(firstImage.src)}
+                    alt={firstImage.alt}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  <EmptyMedia />
+                )}
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent" />
               </div>
+
 
               <div className="flex flex-1 flex-col p-6">
                 {/* Tags */}
@@ -46,7 +44,7 @@ export default async function FeaturedProjectCards() {
                     {project.tags.slice(0, 4).map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent"
+                        className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-foreground"
                       >
                         {tag}
                       </span>
@@ -64,13 +62,13 @@ export default async function FeaturedProjectCards() {
                   </Link>
                 </h3>
                 {project.subtitle && (
-                  <p className="mt-1 text-sm text-foreground/60 line-clamp-2">
+                  <p className="mt-1 text-sm text-secondary line-clamp-2">
                     {project.subtitle}
                   </p>
                 )}
 
                 {project.description && (
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/50 line-clamp-3">
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-secondary line-clamp-3">
                     {project.description}
                   </p>
                 )}
@@ -81,13 +79,13 @@ export default async function FeaturedProjectCards() {
                       href={withBasePath(firstProof.url)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative z-10 mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+                      className="relative z-10 mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-foreground"
                     >
                       {firstProof.label}
                       <ExternalLink className="h-3.5 w-3.5" />
                     </a>
                   ) : (
-                    <span className="mt-4 inline-flex w-fit text-sm font-medium text-foreground/50">
+                    <span className="mt-4 inline-flex w-fit text-sm font-medium text-secondary">
                       {firstProof.label}
                     </span>
                   ))}

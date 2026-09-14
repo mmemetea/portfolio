@@ -9,11 +9,11 @@ export default function Footer() {
             <p className="text-sm font-medium text-foreground">
               Michaël Memeteau
             </p>
-            <p className="mt-1 text-xs text-foreground/50">
+            <p className="mt-1 text-xs text-secondary">
               Lateral Thinker. Product &amp; Innovative Executive.
             </p>
           </div>
-          <p className="text-xs text-foreground/50">
+          <p className="text-xs text-secondary">
             &copy; Michaël Memeteau. All rights
             reserved. &middot;{" "}
             <a

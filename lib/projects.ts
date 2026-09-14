@@ -33,3 +33,14 @@ export interface Project {
   bench?: boolean;
   order: number;
 }
+
+/** Tags render snake_case site-wide: lowercase, separators (space, hyphen,
+ *  slash) become a single underscore. Tech-significant symbols stay — "C++"
+ *  stays "c++", ".NET" stays ".net" — so names keep their meaning. */
+export function snakeCaseTag(tag: string): string {
+  return tag
+    .trim()
+    .toLowerCase()
+    .replace(/[\s/-]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}

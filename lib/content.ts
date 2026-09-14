@@ -1,6 +1,6 @@
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "../keystatic.config";
-import type { Project } from "./projects";
+import { snakeCaseTag, type Project } from "./projects";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 
@@ -16,7 +16,7 @@ function toProject(slug: string, e: ProjectEntry): Project {
     subtitle: e.subtitle ?? undefined,
     description: e.description ?? undefined,
     fullDescription: e.fullDescription ?? undefined,
-    tags: e.tags ? [...e.tags] : undefined,
+    tags: e.tags ? e.tags.map(snakeCaseTag) : undefined,
     proofLinks: (e.proofLinks ?? []).map((p) => ({ label: p.label, url: p.url })),
     images: (e.images ?? []).map((im) => ({ src: im.src, alt: im.alt })),
     videos: (e.videos ?? []).map((v) => ({

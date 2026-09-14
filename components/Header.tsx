@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
@@ -15,7 +16,7 @@ const navLinks = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-
+  const pathname = usePathname();
   return (
     <header className="sticky top-0 z-50 w-full border-b border-foreground/10 bg-background/80 backdrop-blur-md transition-colors">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -29,15 +30,24 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="text-sm font-medium text-foreground/90 transition-colors hover:text-accent"
-            >
-              {label}
-            </Link>
-          ))}
+          {navLinks.map(({ href, label }) => {
+            const active =
+              href === "/" ? pathname === "/" : pathname.startsWith(href);
+            return (
+              <Link
+                key={href}
+                href={href}
+                aria-current={active ? "page" : undefined}
+                className={`text-sm transition-colors hover:text-accent ${
+                  active
+                    ? "font-semibold text-foreground"
+                    : "font-medium text-foreground/90"
+                }`}
+              >
+                {label}
+              </Link>
+            );
+          })}
           <ThemeToggle />
         </nav>
 
@@ -48,7 +58,7 @@ export default function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-foreground/90 transition-colors hover:bg-foreground/5"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-foreground/90 transition-colors hover:bg-foreground/5"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -64,7 +74,11 @@ export default function Header() {
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground/90 transition-colors hover:bg-foreground/5 hover:text-accent"
+                className={`rounded-lg px-3 py-2.5 text-sm transition-colors hover:bg-foreground/5 hover:text-accent ${
+                  (href === "/" ? pathname === "/" : pathname.startsWith(href))
+                    ? "font-semibold text-foreground"
+                    : "font-medium text-foreground/90"
+                }`}
               >
                 {label}
               </Link>

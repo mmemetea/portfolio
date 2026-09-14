@@ -20,7 +20,7 @@ export default async function ProjectsPage() {
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             The work.
           </h1>
-          <p className="mt-3 max-w-2xl text-lg text-foreground/60">
+          <p className="mt-3 max-w-2xl text-lg text-secondary">
             Transformations, not job titles. Each card names what became what,
             and links what&rsquo;s linkable.
           </p>
@@ -34,7 +34,7 @@ export default async function ProjectsPage() {
               <h2 className="text-2xl font-bold tracking-tight text-foreground">
                 Off the clock, on the bench.
               </h2>
-              <p className="mt-2 text-foreground/60">
+              <p className="mt-2 text-secondary">
                 Where the hardware instincts come from.
               </p>
             </div>
