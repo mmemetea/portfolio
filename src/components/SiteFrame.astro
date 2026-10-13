@@ -1,0 +1,30 @@
+---
+// The corner frame: name TL, nav TR, coordinates BL, session clock BR.
+// It steps aside on scroll down and returns on scroll up (frame-away).
+import { site } from '../data/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { pathname } = Astro.url;
+const nav = [
+  { href: `${base}/projects/`, label: 'Work', match: '/projects' },
+  { href: `${base}/about/`, label: 'About', match: '/about' },
+  { href: `${base}/articles/`, label: 'Articles', match: '/articles' },
+];
+---
+<div class="frame" role="banner">
+  <p class="frame__item frame__tl">
+    <a class="roll" href={`${base}/`}><span>{site.name}</span><span class="signal" aria-hidden="true">{site.name}</span></a>
+  </p>
+  <nav class="frame__item frame__tr" aria-label="Main">
+    {nav.map((item) => (
+      <a
+        class="roll"
+        href={item.href}
+        aria-current={pathname.startsWith(item.match) ? 'page' : undefined}
+      >
+        <span>{item.label}</span>
+        <span class="signal" aria-hidden="true">{item.label}</span>
+      </a>
+    ))}
+  </nav>
+  <p class="frame__item frame__br" data-clock>T+0:00.0</p>
+</div>

@@ -1,0 +1,27 @@
+---
+type: project
+title: Chocofi Magnetic Edition
+subtitle: Custom Hall-effect mechanical keyboard
+description: >-
+  A low-profile Chocofi keyboard with magnetic (Hall-effect) switches enabling
+  rapid-trigger actuation. Custom PCB, hand-soldered, 3D-printed case, QMK/VIA
+  firmware.
+tags:
+  - Keyboard
+  - Hall-Effect
+  - Electronics
+  - QMK
+  - Maker
+proofLinks: []
+images:
+  - src: /projects/chocofi-magnet/chocofi-magnet-01.jpg
+    alt: Chocofi magnetic keyboard - build photo
+  - src: /projects/chocofi-magnet/chocofi-magnet-02.jpg
+    alt: Chocofi magnetic keyboard - build photo
+videos:
+  - src: /projects/chocofi-magnet/chocofi-demo.mp4
+    poster: /projects/chocofi-magnet/chocofi-demo-poster.jpg
+bench: true
+order: 12
+---
+

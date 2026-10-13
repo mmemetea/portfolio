@@ -1,0 +1,22 @@
+---
+type: project
+title: 'The monthly close, automated'
+subtitle: InnoTech / VW Financial Services · PowerBI + AI agents
+description: >-
+  Accounting and treasury still close through manual Power Query rituals.
+  Replacing them with PowerBI pipelines and AI agents. In progress, no receipt
+  yet; the receipt will be the close time when it's done.
+tags:
+  - PowerBI
+  - Power Query
+  - AI Agents
+  - Finance
+proofLinks:
+  - label: In progress · no receipt yet
+    url: ''
+videos:
+  - src: /projects/innotech-vwfs/bpmn-insurance-reconciliation.mp4
+    poster: /projects/innotech-vwfs/bpmn-insurance-reconciliation-poster.jpg
+order: 1
+---
+Leading simplification, automation & optimization of accounting and treasury operations using PowerBI, Power Query and AI Agents for VW Financial Services.

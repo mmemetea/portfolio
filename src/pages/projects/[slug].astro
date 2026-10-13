@@ -1,0 +1,109 @@
+---
+import { getAllProjects } from '../../lib/collections';
+import { marked } from 'marked';
+import Base from '../../layouts/Base.astro';
+import { withBasePath } from '../../lib/paths';
+import { mediaSize } from '../../lib/media';
+
+export async function getStaticPaths() {
+  const projects = await getAllProjects();
+  return projects.map((project, i) => ({
+    params: { slug: project.slug },
+    props: {
+      project,
+      prev: projects[(i - 1 + projects.length) % projects.length],
+      next: projects[(i + 1) % projects.length],
+    },
+  }));
+}
+
+const { project, prev, next } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const body = project.fullDescription
+  ? marked.parse(project.fullDescription, { async: false })
+  : (project.description ? `<p>${project.description}</p>` : '');
+const receipt = project.proofLinks ?? [];
+const description = (project.description ?? project.title).slice(0, 160);
+const firstMedia = project.videos?.[0] ?? project.images?.[0];
+const preloadImage = firstMedia && 'poster' in firstMedia ? firstMedia.poster : firstMedia?.src;
+---
+<Base title={project.title} description={description} preloadImage={preloadImage}>
+  <article class="case">
+    <a class="case__back roll mono" href={`${base}/projects/`}>
+      <span>← All runs</span><span class="signal" aria-hidden="true">← All runs</span>
+    </a>
+    <h1 class="case__title display display--free">{project.title}</h1>
+    <p class="case__sub mono">{project.subtitle}</p>
+
+    <div class="case__meta">
+      <div>
+        <h2 class="mono">Field</h2>
+        <ul class="mono">
+          {project.tags?.map((tag) => <li>{tag}</li>)}
+        </ul>
+      </div>
+      {project.compression && (
+        <div>
+          <h2 class="mono">Compression</h2>
+          <p class="case__comp">
+            {project.compression.before}<span class="comp-arrow" aria-hidden="true">→</span>{project.compression.after}
+          </p>
+        </div>
+      )}
+      <div>
+        <h2 class="mono">Receipt</h2>
+        <ul class="mono">
+          {receipt.map((r) => (
+            <li>
+              {r.url
+                ? <a class="link" href={r.url.startsWith('/') ? withBasePath(r.url) : r.url} target="_blank" rel="noopener noreferrer">{r.label}</a>
+                : r.label}
+            </li>
+          ))}
+          {!receipt.length && <li class="muted">No public receipt</li>}
+        </ul>
+      </div>
+    </div>
+
+    {body && <div class="case__body prose" set:html={body} />}
+
+    <div class="case__gallery">
+      {project.videos?.map((video) => {
+        const size = mediaSize(video.src);
+        return (
+          <figure>
+            <video
+              src={withBasePath(video.src)}
+              poster={video.poster ? withBasePath(video.poster) : undefined}
+              width={size?.width}
+              height={size?.height}
+              muted loop autoplay playsinline controls preload="none"
+            />
+            <figcaption class="mono">{video.src.split('/').pop()?.replace('.mp4', '')} · animation</figcaption>
+          </figure>
+        );
+      })}
+      {project.images?.map((image, i) => {
+        const size = mediaSize(image.src);
+        return (
+          <figure>
+            <img
+              src={withBasePath(image.src)}
+              alt={image.alt}
+              width={size?.width}
+              height={size?.height}
+              loading={i < 1 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+            <figcaption class="mono">Fig. {String(i + 1).padStart(2, '0')} · {image.alt}</figcaption>
+          </figure>
+        );
+      })}
+    </div>
+
+    <nav class="case__nav mono" aria-label="More runs">
+      {prev && <a class="roll" href={`${base}/projects/${prev.slug}/`}><span>← {prev.title}</span><span class="signal" aria-hidden="true">← {prev.title}</span></a>}
+      {next && <a class="roll" href={`${base}/projects/${next.slug}/`}><span>{next.title} →</span><span class="signal" aria-hidden="true">{next.title} →</span></a>}
+    </nav>
+  </article>
+</Base>

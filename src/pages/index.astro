@@ -1,0 +1,104 @@
+---
+import { getAllProjects } from '../lib/collections';
+import { toIndexRows } from '../lib/rows';
+import Base from '../layouts/Base.astro';
+import WorkIndex from '../components/WorkIndex.astro';
+import { withBasePath } from '../lib/paths';
+import { mediaSize } from '../lib/media';
+
+const projects = await getAllProjects();
+const rows = toIndexRows(projects);
+const fieldRows = rows.filter((r) => !r.bench);
+const benchRows = rows.filter((r) => r.bench);
+
+const CELLS = 24 * 9;
+const benchCards = [
+  'voron-raven',
+  '3d-print-showcase',
+  'chocofi-magnet',
+  'egg-v2',
+]
+  .map((slug) => projects.find((p) => p.slug === slug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p?.images?.length));
+---
+<Base>
+  <section class="hero" aria-label="Introduction">
+    <div class="hero__stage">
+      <h1 class="hero__claim display" data-lcp>
+        <span>Slow work,</span><br />
+        <span>compressed.</span>
+      </h1>
+      <p class="hero__intro" data-split="lines" data-intro data-delay="0.3">
+        Mechanical engineer turned product and engineering lead. Twice founder. I replace
+        slow manual rituals with measured systems, and I keep the receipts.
+      </p>
+      <p class="hero__meta mono" data-reveal="fade" data-intro data-delay="0.5">
+        Currently <strong>finance automation, VW Financial Services</strong> · Lisbon
+      </p>
+      <div class="hero__plate" aria-hidden="true"><div class="hero__plate-bar" data-hero-bar></div></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="work-heading">
+    <header class="section__head mono" id="work-heading">
+      <span><strong>Field runs</strong> · {fieldRows.length}</span>
+      <span>Each with its receipt</span>
+    </header>
+    <WorkIndex rows={fieldRows} />
+    <header class="section__head mono" style="margin-top: calc(var(--u) * 5);" id="bench-heading">
+      <span><strong>Bench runs</strong> · {benchRows.length}</span>
+      <span>The home workshop</span>
+    </header>
+    <WorkIndex rows={benchRows} start={fieldRows.length + 1} />
+  </section>
+
+  <section class="run" data-run aria-label="A compression run: e-bus tender scheduling">
+    <div class="run__stage" data-run-stage>
+      <header class="run__head mono">
+        <span>Compression run 05 · e-bus tender</span>
+        <span>tb.lx / Daimler</span>
+      </header>
+      <div class="run__hud" data-run-hud>
+        <span class="run__hud-label mono">Manual answer</span>
+        <span class="run__days" data-run-days>DAY 01</span>
+        <span class="run__hud-sub mono">One month of Excel per network</span>
+      </div>
+      <div class="run__grid" data-run-grid aria-hidden="true">
+        {Array.from({ length: CELLS }).map(() => <div class="run__cell" data-run-cell />)}
+      </div>
+      <div class="run__result" data-run-result>
+        <p class="run__line"><span class="run__line-inner" data-run-line>Several hundred e-buses, scheduled</span></p>
+        <p class="run__time"><span data-run-time>0.00</span><span class="run__time-unit">s</span></p>
+        <a class="run__link link" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/projects/tblx/`}>Open the run</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="bench-strip-heading">
+    <header class="section__head mono" id="bench-strip-heading">
+      <span><strong>The bench</strong> · Voron, keyboards, printed parts</span>
+      <span>Lisbon</span>
+    </header>
+    <div class="bench__grid">
+      {benchCards.map((card) => {
+        const size = mediaSize(card.images![0].src);
+        return (
+          <a class="bench__card" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/projects/${card.slug}/`}>
+            <img
+              src={withBasePath(card.images![0].src)}
+              alt={card.images![0].alt}
+              width={size?.width}
+              height={size?.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="bench__label">
+              <span class="mono">{card.title}</span>
+              <span class="mono muted">{card.tagsRaw?.[0]}</span>
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+</Base>

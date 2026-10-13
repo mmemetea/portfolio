@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const entries = (await getCollection('articles', ({ data }) => data.draft !== true)).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const fmt = (iso: string) =>
+  new Intl.DateTimeFormat('en', { year: 'numeric', month: 'long' }).format(new Date(iso));
+---
+<Base
+  title="Articles"
+  description="Published writing: Kanban as the alternative path to agility at tb.lx, and polyurethane 3D printing on Hackaday."
+>
+  <section class="pagehead">
+    <h1 class="pagehead__title display">Articles</h1>
+    <p class="case__sub mono">Published elsewhere · {entries.length}</p>
+  </section>
+  <section class="articles" aria-label="Article list">
+    <div class="articles__list">
+      {entries.map((entry) => (
+        <article class="articles__item">
+          <a class="link" href={entry.data.url} target="_blank" rel="noopener noreferrer">
+            <h2>{entry.data.title}</h2>
+          </a>
+          <p class="articles__meta mono">{entry.data.publication} · {fmt(entry.data.date)}</p>
+          {entry.data.excerpt && <p class="articles__excerpt">{entry.data.excerpt}</p>}
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

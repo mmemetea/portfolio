@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# mmemetea.github.io/portfolio
 
-## Getting Started
+Portfolio of Michaël Memeteau — mechanical engineer, twice founder, product and engineering lead in Lisbon.
 
-First, run the development server:
+**Concept: "one month → seven seconds."** Every project is presented as a compression run: slow manual work in, a measured result out, the receipt attached. The home page plays the real tb.lx story (a month of Excel collapsing into a seven-second optimizer schedule) as its signature moment, and the loader is a session stopwatch that becomes the corner clock.
+
+## Stack
+
+- Astro 7 (static, content collections in `content/*.md`)
+- GSAP + Lenis motion engine in `src/engine/` (one clock, page lifecycle, declarative reveals)
+- Plain CSS design tokens (`src/styles/tokens.css`), Archivo variable + JetBrains Mono (self-hosted)
+- No client framework, no WebGL, no trackers
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:4321/portfolio
+npm run build      # production build → dist/
+npm run preview
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deploy: push to `main` — the GitHub Actions workflow builds `dist/` and publishes to GitHub Pages (`https://mmemetea.github.io/portfolio`). The base path is set in `astro.config.mjs`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `content/projects/*.md` — case pages. Frontmatter: `title`, `subtitle`, `description`, `tags`, `compression: {before, after}` (the measured result for the index), `proofLinks` (real URLs only), `images`, `videos`, `featured`, `bench` (home-workshop projects), `order`.
+- `content/experience/*.md` — career log on the about page.
+- `content/about.md`, `content/articles/*.md`.
+- Media lives in `public/projects/<slug>/`; `src/lib/media-manifest.json` carries intrinsic dimensions (regenerate with `node scripts/media-manifest.mjs` after adding media) so images ship with `width`/`height`.
 
-## Learn More
+A build-time gate (`src/lib/gate.ts`) fails the build if any referenced image is missing or a wikilink dangles.
 
-To learn more about Next.js, take a look at the following resources:
+## Design
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`DESIGN.md` documents the concept, palette, type system, motion language and the QA notes. `DESIGN.md` is the reference for future passes — keep it current.

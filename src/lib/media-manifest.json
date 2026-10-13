@@ -1,0 +1,222 @@
+{
+ "/og.png": {
+  "w": 1200,
+  "h": 630
+ },
+ "/profile.jpg": {
+  "w": 900,
+  "h": 900
+ },
+ "/profile.png": {
+  "w": 1105,
+  "h": 1105
+ },
+ "/projects/3d-print-showcase/3d-print-showcase-01.jpg": {
+  "w": 1600,
+  "h": 1200
+ },
+ "/projects/3d-print-showcase/3d-print-showcase-02.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/3d-print-showcase/3d-print-showcase-03.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/3d-print-showcase/3d-print-showcase-04.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/3d-print-showcase/3d-print-showcase-05.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/3d-print-showcase/3d-print-showcase-06.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/3d-print-showcase/clip.mp4": {
+  "w": 1280,
+  "h": 720
+ },
+ "/projects/3d-print-showcase/poster.jpg": {
+  "w": 1280,
+  "h": 720
+ },
+ "/projects/autoseverity/autoseverity-figma-page1.jpg": {
+  "w": 1600,
+  "h": 1504
+ },
+ "/projects/autoseverity/graph-indicadores-poster.jpg": {
+  "w": 1400,
+  "h": 1172
+ },
+ "/projects/autoseverity/graph-indicadores.gif": {
+  "w": 954,
+  "h": 798
+ },
+ "/projects/autoseverity/graph-indicadores.mp4": {
+  "w": 1400,
+  "h": 1172
+ },
+ "/projects/chocofi-magnet/chocofi-demo-poster.jpg": {
+  "w": 1000,
+  "h": 838
+ },
+ "/projects/chocofi-magnet/chocofi-demo.mp4": {
+  "w": 1000,
+  "h": 838
+ },
+ "/projects/chocofi-magnet/chocofi-magnet-01.jpg": {
+  "w": 1600,
+  "h": 1080
+ },
+ "/projects/chocofi-magnet/chocofi-magnet-02.jpg": {
+  "w": 1600,
+  "h": 1080
+ },
+ "/projects/chocofi-magnet/chocofi-magnet-03.gif": {
+  "w": 1054,
+  "h": 884
+ },
+ "/projects/comut/comut-01.jpg": {
+  "w": 1600,
+  "h": 1200
+ },
+ "/projects/egg-v2/egg-v2-01.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/egg-v2/egg-v2-02.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/egg-v2/egg-v2-03.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/egg-v2/egg-v2-04.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/egg-v2/egg-v2-05.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/egg-v2/egg-v2-06.jpg": {
+  "w": 1600,
+  "h": 900
+ },
+ "/projects/innotech-fujitsu/innotech-fujitsu-01.jpg": {
+  "w": 1600,
+  "h": 887
+ },
+ "/projects/innotech-fujitsu/innotech-fujitsu-02.jpg": {
+  "w": 1600,
+  "h": 792
+ },
+ "/projects/innotech-vwfs/bpmn-insurance-reconciliation-poster.jpg": {
+  "w": 1280,
+  "h": 678
+ },
+ "/projects/innotech-vwfs/bpmn-insurance-reconciliation.mp4": {
+  "w": 1280,
+  "h": 678
+ },
+ "/projects/nesto/NESTO - Functional Overview.png": {
+  "w": 961,
+  "h": 468
+ },
+ "/projects/nesto/NESTO Pitch Deck Brinc 2018Q4.png": {
+  "w": 960,
+  "h": 540
+ },
+ "/projects/nesto/nesto-functional-overview.png": {
+  "w": 961,
+  "h": 468
+ },
+ "/projects/nesto/nesto-pitch-deck-brinc.png": {
+  "w": 960,
+  "h": 540
+ },
+ "/projects/owlo/owlo-01.jpg": {
+  "w": 1600,
+  "h": 737
+ },
+ "/projects/owlo/owlo-02.jpg": {
+  "w": 1600,
+  "h": 767
+ },
+ "/projects/owlo/owlo-03.jpg": {
+  "w": 1113,
+  "h": 1600
+ },
+ "/projects/owlo/owlo-04.jpg": {
+  "w": 1600,
+  "h": 1200
+ },
+ "/projects/owlo/owlo-05.jpg": {
+  "w": 1600,
+  "h": 1200
+ },
+ "/projects/owlo/owlo-06.jpg": {
+  "w": 1600,
+  "h": 1600
+ },
+ "/projects/owlo/owlo-07.jpg": {
+  "w": 1600,
+  "h": 1200
+ },
+ "/projects/owlo/owlo-08.jpg": {
+  "w": 898,
+  "h": 1600
+ },
+ "/projects/owlo/press-shark-tank-pitch.webp": {
+  "w": 1920,
+  "h": 1280
+ },
+ "/projects/owlo/press-shark-tank-q-and-a.webp": {
+  "w": 1920,
+  "h": 1280
+ },
+ "/projects/visionbox/actuator-poster.jpg": {
+  "w": 1200,
+  "h": 682
+ },
+ "/projects/visionbox/actuator.mp4": {
+  "w": 1200,
+  "h": 682
+ },
+ "/projects/voron-raven/clip.mp4": {
+  "w": 406,
+  "h": 720
+ },
+ "/projects/voron-raven/poster.jpg": {
+  "w": 406,
+  "h": 720
+ },
+ "/projects/voron-raven/voron-raven-01.jpg": {
+  "w": 1400,
+  "h": 1400
+ },
+ "/projects/voron-raven/voron-raven-02.jpg": {
+  "w": 1400,
+  "h": 1400
+ },
+ "/projects/voron-raven/voron-raven-03.jpg": {
+  "w": 720,
+  "h": 1600
+ },
+ "/projects/voron-raven/voron-raven-04.jpg": {
+  "w": 1757,
+  "h": 1800
+ },
+ "/projects/voron-raven/voron-raven-05.jpg": {
+  "w": 720,
+  "h": 1600
+ },
+ "/projects/voron-raven/voron-raven-06.jpg": {
+  "w": 1400,
+  "h": 1050
+ }
+}

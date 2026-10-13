@@ -1,0 +1,42 @@
+---
+// The index is the concept: every row is a compression run with a measured before → after.
+// `rows`: view-ready projects; `numbering`: continuous run numbers.
+import { withBasePath } from '../lib/paths';
+
+export interface Row {
+  slug: string;
+  title: string;
+  subtitle?: string;
+  compression?: { before: string; after: string };
+  bench?: boolean;
+  preview?: string;
+}
+
+interface Props {
+  rows: Row[];
+  start?: number;
+}
+const { rows, start = 1 } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<ul class="index" data-index>
+  {rows.map((row, i) => (
+    <li class:list={['index__row', { 'index__row--bench': row.bench }]}>
+      <a
+        href={`${base}/projects/${row.slug}/`}
+        data-preview={row.preview ? withBasePath(row.preview) : undefined}
+        data-cursor="Open"
+      >
+        <span class="index__no">{String(start + i).padStart(2, '0')}</span>
+        <span class="index__title">{row.title}</span>
+        <span class="index__comp">
+          {row.compression
+            ? <>{row.compression.before}<span class="comp-arrow" aria-hidden="true">→</span>{row.compression.after}</>
+            : row.subtitle}
+        </span>
+        <span class="index__sub">{row.compression ? row.subtitle : ''}</span>
+        <span class="index__go" aria-hidden="true">→</span>
+      </a>
+    </li>
+  ))}
+</ul>

@@ -1,0 +1,57 @@
+/* DESIGN TOKENS — "one month → seven seconds". Paper, ink, one signal. */
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono-var.woff2') format('woff2');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Color: name by role, not by hue. */
+  --c-bg: #e9e7e2;
+  --c-fg: #1a1b1d;
+  --c-muted: #54565c;
+  --c-line: rgb(26 27 29 / 0.16);
+  --c-accent: #d9480f;
+  --c-curtain: var(--c-fg);
+  --c-field: #17181a; /* inverted chapter ground (footer) */
+
+  /* Type families */
+  --f-display: 'Archivo', system-ui, sans-serif;
+  --f-body: 'Archivo', system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Fluid type scale (min @ 375px → max @ 1440px) */
+  --t-mega: clamp(3.2rem, 0.9rem + 11vw, 11.5rem);
+  --t-xl: clamp(2.4rem, 1.2rem + 5vw, 6.25rem);
+  --t-l: clamp(1.6rem, 1.2rem + 1.8vw, 3rem);
+  --t-m: clamp(1.15rem, 1rem + 0.7vw, 1.5rem);
+  --t-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --t-s: 0.875rem;
+  --t-xs: 0.75rem;
+
+  /* Space */
+  --u: clamp(0.5rem, 0.35rem + 0.6vw, 1rem);
+  --gutter: clamp(1rem, 0.6rem + 1.6vw, 2.5rem);
+  --cols: 12;
+
+  /* Shape: one radius rule. */
+  --radius: 0px;
+
+  /* Layers */
+  --z-content: 1;
+  --z-frame: 50;
+  --z-cursor: 80;
+  --z-curtain: 90;
+  --z-loader: 100;
+}

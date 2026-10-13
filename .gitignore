@@ -1,45 +1,18 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Astro/Build Artifacts
+.astro/
+dist/
+.next/
+.qa/
+.shots/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# Dependencies
+node_modules/
 
-# testing
-/coverage
+# Build outputs
+out/ # Kept for parity baseline compatibility
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-!.env.schema
-# static-export staging (scripts/export.sh)
-.export-tmp/
+# Keystatic/Next.js remnants (cleaned up)
+keystatic.config.ts
+app/api/keystatic/
+scripts/export.sh
+scripts/migrate-keystatic-to-vault.mjs

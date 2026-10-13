@@ -1,0 +1,11 @@
+---
+// First-load moment: the session stopwatch. Restyled per project; the data-* hooks are the engine's.
+// The counter sits exactly where the corner clock lives (bottom-right), so the handoff is seamless.
+---
+<div id="loader" role="status" aria-label="Loading">
+  <div class="loader__inner">
+    <span class="loader__label" data-loader-out>Measuring</span>
+    <span class="loader__count" data-loader-out data-loader-count>0:00.0</span>
+  </div>
+  <div class="loader__bar" data-loader-bar></div>
+</div>

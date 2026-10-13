@@ -1,0 +1,95 @@
+---
+import { getAbout, getExperiences } from '../lib/collections';
+import Base from '../layouts/Base.astro';
+import { withBasePath } from '../lib/paths';
+
+const about = await getAbout();
+const experience = await getExperiences();
+
+function period(start?: string, end?: string | null): string {
+  const fmt = (iso?: string | null) => (iso ? iso.slice(0, 4) : 'now');
+  return `${fmt(start)}–${fmt(end)}`;
+}
+---
+<Base
+  title="About"
+  description={`${about.name}, ${about.location}. Mechanical engineer (Arts et Métiers), twice founder, product and engineering lead. Fluent in French, Portuguese, English.`}
+>
+  <section class="pagehead">
+    <h1 class="pagehead__title display">{about.name}</h1>
+    <p class="case__sub mono">{about.location} · {about.languages.map((l) => l.name).join(' / ')}</p>
+  </section>
+
+  <section class="about" aria-label="Biography">
+    <div class="about__grid">
+      <div class="prose">
+        {about.bio.map((paragraph) => <p>{paragraph}</p>)}
+        <h2 class="mono" style="margin-top: calc(var(--u) * 4);">The record so far</h2>
+      </div>
+      <figure class="about__photo">
+        <img src={withBasePath('/profile.jpg')} alt="Portrait of {about.name} against a plaster wall" loading="eager" decoding="async" width="900" height="900" />
+        <figcaption class="mono">{about.location}</figcaption>
+      </figure>
+    </div>
+
+    <div class="log" role="table" aria-label="Career log">
+      {experience.map((job) => (
+        <div class="log__row" role="row">
+          <span class="log__years" role="cell">{period(job.startDate, job.endDate)}</span>
+          <span class="log__role" role="cell">
+            {job.company}
+            {job.role ? <span class="muted"> · {job.role}</span> : null}
+          </span>
+          <span class="log__place" role="cell">{job.location}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="about__grid" style="margin-top: calc(var(--u) * 6);">
+      <div class="spec">
+        {about.skills.map((group) => (
+          <div class="spec__block">
+            <h2 class="mono">{group.category}</h2>
+            <ul class="mono">
+              {group.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
+        <div class="spec__block">
+          <h2 class="mono">Education</h2>
+          {about.education.map((ed) => (
+            <p class="spec__row">
+              <span>{ed.school}</span>
+              <span class="log__years">{ed.period}</span>
+            </p>
+          ))}
+        </div>
+      </div>
+      <div class="spec">
+        <div class="spec__block">
+          <h2 class="mono">Languages</h2>
+          {about.languages.map((lang) => (
+            <p class="spec__row">
+              <span>{lang.name}</span>
+              <span class="log__years">{lang.level} · {lang.note}</span>
+            </p>
+          ))}
+        </div>
+        <div class="spec__block">
+          <h2 class="mono">Off the clock</h2>
+          <ul class="mono">
+            {about.otherInterests.map((interest) => <li>{interest}</li>)}
+          </ul>
+        </div>
+        <div class="spec__block">
+          <h2 class="mono">Photo albums</h2>
+          <ul class="mono">
+            {about.photoAlbums.map((album) => (
+              <li><a class="link" href={album.url} target="_blank" rel="noopener noreferrer">{album.title}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

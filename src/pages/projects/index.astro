@@ -1,0 +1,31 @@
+---
+import { getAllProjects } from '../../lib/collections';
+import { toIndexRows } from '../../lib/rows';
+import Base from '../../layouts/Base.astro';
+import WorkIndex from '../../components/WorkIndex.astro';
+
+const projects = await getAllProjects();
+const rows = toIndexRows(projects);
+const fieldRows = rows.filter((r) => !r.bench);
+const benchRows = rows.filter((r) => r.bench);
+const measured = rows.filter((r) => r.compression).length;
+---
+<Base
+  title="Work"
+  description="Every project as a compression run: slow work in, a measured result out. Daimler, Vision-Box, the European Commission, VW Financial Services, plus the home workshop."
+>
+  <section class="pagehead">
+    <h1 class="pagehead__title display">Work</h1>
+    <p class="case__sub mono">All runs · {rows.length} · {measured} with a measured compression</p>
+  </section>
+  <section class="section" style="padding-top: 0;" aria-label="Project index">
+    <header class="section__head mono">
+      <span><strong>Field runs</strong> · {fieldRows.length}</span>
+    </header>
+    <WorkIndex rows={fieldRows} />
+    <header class="section__head mono" style="margin-top: calc(var(--u) * 5);">
+      <span><strong>Bench runs</strong> · {benchRows.length}</span>
+    </header>
+    <WorkIndex rows={benchRows} start={fieldRows.length + 1} />
+  </section>
+</Base>

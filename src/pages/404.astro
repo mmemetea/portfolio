@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base title="404" description="This measurement was not found.">
+  <section class="notfound">
+    <p class="notfound__code mono">Run failed · 404 · no receipt</p>
+    <h1 class="display">Measurement<br />not found</h1>
+    <p>The page you requested did not resolve. Everything that does resolve is on the index.</p>
+    <a class="btn" href={`${base}/`}><span class="btn__fill" aria-hidden="true"></span>Back to the index</a>
+  </section>
+</Base>

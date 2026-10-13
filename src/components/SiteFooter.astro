@@ -1,0 +1,47 @@
+---
+// Footer: the inverted chapter. Big claim, one CTA, the public receipts, the colophon.
+import { site } from '../data/site';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const receipts = [
+  { label: 'The EU study, published (PDF)', href: 'https://health.ec.europa.eu/system/files/2016-11/2015_tpd_tracking_tracing_frep_en_0.pdf' },
+  { label: 'NESTO on Hackaday', href: 'https://hackaday.com/2017/09/03/polyurethane-meet-3d-printing/' },
+  { label: 'Vision-Box joined Amadeus (press)', href: 'https://amadeus.com/en/newsroom/press-releases/vision-box-biometrics-acquisition-complete' },
+  { label: 'Kanban at tb.lx (Medium)', href: 'https://medium.com/tblx-insider/kanban-the-alternative-path-to-agility-55ef6c13e25c' },
+];
+const elsewhere = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mmemeteau/' },
+  { label: 'GitHub', href: 'https://github.com/mmemetea' },
+  { label: 'Onshape', href: 'https://cad.onshape.com/' },
+];
+---
+<footer class="footer">
+  <h2 class="footer__claim display">Have slow work?</h2>
+  <div class="footer__grid">
+    <div>
+      <h2 class="mono">Start a run</h2>
+      <a class="btn btn--invert" href={`mailto:${site.email}`} data-fill>
+        <span class="btn__fill" aria-hidden="true"></span>{site.email}
+      </a>
+    </div>
+    <div>
+      <h2 class="mono">On the record</h2>
+      <ul>
+        {receipts.map((r) => (
+          <li><a class="link" href={r.href} target="_blank" rel="noopener noreferrer">{r.label}</a></li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <h2 class="mono">Elsewhere</h2>
+      <ul>
+        {elsewhere.map((l) => (
+          <li><a class="link" href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="footer__colophon mono">
+    <span>© 2026 {site.name} · Lisbon 38.72°N 9.14°W</span>
+    <span>Set in Archivo and JetBrains Mono · Astro, GSAP, Lenis · No trackers</span>
+  </div>
+</footer>
